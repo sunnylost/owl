@@ -1,0 +1,35 @@
+{
+  "name": "owl",
+  "main": "index.js",
+  "version": "0.0.1",
+  "window": {
+    "toolbar": false,
+    "resizable": true,
+    "fullscreen": false,
+    "icon": "assets/imgs/app.png",
+    "width": 800,
+    "height": 600
+  },
+  "scripts": {
+    "build": "babel src -w -d build"
+  },
+  "dependencies": {
+    "react": "^15.0.1",
+    "react-dom": "^15.0.1",
+    "react-redux": "^4.4.5",
+    "redux": "^3.5.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mls-fe/owl.git"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.7.7",
+    "babel-plugin-syntax-jsx": "^6.8.0",
+    "babel-plugin-transform-async-to-module-method": "^6.7.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.8.0",
+    "babel-plugin-transform-object-assign": "^6.8.0",
+    "babel-plugin-transform-react-display-name": "^6.8.0",
+    "babel-plugin-transform-react-jsx": "^6.8.0"
+  }
+}
