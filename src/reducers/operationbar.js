@@ -1,19 +1,22 @@
 import actionTypes from '../util/actionTypes'
 
 const initialState = {
-    isRunning: false
+    isRunning : false,
+    statusText: ''
 }
 
 const operationbar = ( state = initialState, action ) => {
     switch ( action.type ) {
         case actionTypes.SERVER_START:
             return Object.assign( {}, state, {
-                isRunning: true
+                isRunning: true,
+                statusText: '服务正在运行'
             } )
 
         case actionTypes.SERVER_STOP:
             return Object.assign( {}, state, {
-                isRunning: false
+                isRunning: false,
+                statusText: '服务已经停止'
             } )
 
         case actionTypes.SCREEN_CLEAR:

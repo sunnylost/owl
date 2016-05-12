@@ -1,7 +1,7 @@
 import React from 'react'
 import Searchbar from './searchbar'
 
-const Operationbar = ( { isRunning, toggleServer } ) => (
+const Operationbar = ( { isRunning, statusText, toggleServer } ) => (
     <div className="operate">
         <button data-action="start"
                 className={ isRunning ? 'disabled' : 'prepare' }
@@ -16,7 +16,7 @@ const Operationbar = ( { isRunning, toggleServer } ) => (
         <button>清屏</button>
         <button>重置</button>
         <Searchbar placeholder="查找"/>
-        <span className="status"></span>
+        <span className="status">{ statusText }</span>
     </div>
 )
 

@@ -4,9 +4,7 @@ import { startServer, stopServer } from '../actions'
 import Operationbar from '../components/operationbar'
 
 const mapStateToProps = ( state ) => {
-    return {
-        isRunning: state.operationbar.isRunning
-    }
+    return state.operationbar
 }
 
 const mapDispatchToProps = ( dispatch ) => {

@@ -1,3 +1,7 @@
+:root {
+    --color : #3e454d;
+}
+
 /**
     buttons
 */
@@ -13,7 +17,7 @@ button {
 }
 
 button:active {
-    background-color : #3e454d;
+    background-color : var(--color);
 }
 
 button.prepare {
@@ -41,7 +45,11 @@ button.danger {
     padding : 10px 20px;
 }
 
+.operate span {
+    color : var(--color);
+}
+
 .info {
     padding-left     : 20px;
-    background-color : #3e454d;
+    background-color : var(--color);
 }
