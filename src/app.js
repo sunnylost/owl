@@ -1,4 +1,14 @@
 /**
+ * AppState {
+ *      server {
+ *          isRunning
+ *          port
+ *          ip
+ *      }
+ *      urls
+ *          all
+ * }
+ *
  * Toolbar
  *      InforBar
  *          - State:
@@ -43,7 +53,7 @@
  * DetailArea
  */
 import React from 'react'
-import Toolbar from './components/toolbar'
+import Toolbar from './containers/toolbar'
 //import URLArea from './components/urlArea'
 //import DetailArea from './components/detailArea'
 
