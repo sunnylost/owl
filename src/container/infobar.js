@@ -4,10 +4,7 @@ import { changePort } from '../actions'
 import Infobar from '../components/infobar'
 
 const mapStateToProps = ( state ) => {
-    return {
-        port: state.infobar.port,
-        ip  : state.infobar.ip
-    }
+    return state.server
 }
 
 const mapDispatchToProps = ( dispatch ) => {

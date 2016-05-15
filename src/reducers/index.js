@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux'
-import infobar from './infobar'
-import operationbar from './operationbar'
+import server from './server'
 
 const App = combineReducers( {
-    infobar, operationbar
+    server
 } )
 
 export default App

@@ -1,21 +1,40 @@
 import actionTypes from '../util/actionTypes'
+import Util from '../util'
 
 const initialState = {
+    ip        : Util.getIP(),
+    port      : Util.getPort(),
+    url       : '',
     isRunning : false,
     statusText: ''
 }
 
-const operationbar = ( state = initialState, action ) => {
+const server = ( state = initialState, action ) => {
     switch ( action.type ) {
+        case actionTypes.PORT_CHANGE:
+            return Object.assign( {}, state, {
+                port: action.port
+            } )
+
+        case actionTypes.URL_FILTER:
+            return Object.assign( {}, state, {
+                url: action.url
+            } )
+
+        case actionTypes.URL_FILTER_CLEAR:
+            return Object.assign( {}, state, {
+                url: ''
+            } )
+
         case actionTypes.SERVER_START:
             return Object.assign( {}, state, {
-                isRunning: true,
+                isRunning : true,
                 statusText: '服务正在运行'
             } )
 
         case actionTypes.SERVER_STOP:
             return Object.assign( {}, state, {
-                isRunning: false,
+                isRunning : false,
                 statusText: '服务已经停止'
             } )
 
@@ -34,4 +53,4 @@ const operationbar = ( state = initialState, action ) => {
     return state
 }
 
-export default operationbar
+export default server

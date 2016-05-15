@@ -1,4 +1,5 @@
 import actionTypes from '../util/actionTypes'
+import Server from '../server'
 
 export const changePort = port => {
     return {
@@ -22,14 +23,22 @@ export const clearUrlFilter = () => {
 
 //operationbar
 export const startServer = () => {
-    return {
-        type: actionTypes.SERVER_START
+    return ( dispatch, getState ) => {
+        Server.start( {
+            port: getState().server.port
+        } )
+        dispatch( {
+            type: actionTypes.SERVER_START
+        } )
     }
 }
 
 export const stopServer = () => {
-    return {
-        type: actionTypes.SERVER_STOP
+    return ( dispatch ) => {
+        Server.stop()
+        dispatch( {
+            type: actionTypes.SERVER_STOP
+        } )
     }
 }
 

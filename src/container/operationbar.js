@@ -4,13 +4,13 @@ import { startServer, stopServer } from '../actions'
 import Operationbar from '../components/operationbar'
 
 const mapStateToProps = ( state ) => {
-    return state.operationbar
+    return state.server
 }
 
 const mapDispatchToProps = ( dispatch ) => {
     return {
         toggleServer( isStart ) {
-            dispatch( isStart ? startServer() : stopServer() )
+            dispatch( ( isStart ? startServer : stopServer )() )
         }
     }
 }
