@@ -60,3 +60,10 @@ export const search = ( keyword ) => {
         keyword
     }
 }
+
+export const addURL = ( url ) => {
+    global.Store.dispatch( {
+        type: actionTypes.URL_ADD,
+        url
+    } )
+}

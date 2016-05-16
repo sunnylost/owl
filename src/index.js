@@ -6,7 +6,8 @@ import { createStore, applyMiddleware } from 'redux'
 import reducers from './build/reducers'
 import App from './build/app'
 
-const store = createStore( reducers, applyMiddleware( thunk ) )
+const store  = createStore( reducers, applyMiddleware( thunk ) )
+global.Store = store
 
 render(
     <Provider store={store}>

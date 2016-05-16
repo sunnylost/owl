@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux'
 import server from './server'
+import urls from './urls'
 
 const App = combineReducers( {
-    server
+    server, urls
 } )
 
 export default App

@@ -54,13 +54,13 @@
  */
 import React from 'react'
 import Toolbar from './containers/toolbar'
-//import URLArea from './components/urlArea'
-//import DetailArea from './components/detailArea'
+import URLArea from './containers/urlArea'
 
 class App extends React.Component {
     render() {
         return <div class="app-wrap">
             <Toolbar/>
+            <URLArea/>
         </div>
     }
 }
