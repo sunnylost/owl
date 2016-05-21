@@ -2,11 +2,14 @@ import React from 'react'
 
 class URLItem extends React.Component {
     render() {
-        let type = this.props.type
+        let props         = this.props,
+            displayDetail = props.displayDetail,
+            { id, isActive, type, url } = props.data,
+            className     = 'url item ' + ( isActive ? 'active' : '' )
 
-        return <li className="url item">
+        return <li className={ className } onClick={ e => displayDetail( id ) }>
             <i className={ 'c-icon c-icon-' + type } title={ type } data-type={ type }></i>
-            <span className="url val">{ this.props.url }</span>
+            <span className="url val">{ url }</span>
         </li>
     }
 }

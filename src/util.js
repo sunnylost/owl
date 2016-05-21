@@ -1,7 +1,8 @@
-var OS     = require( 'os' ),
-    Config = require( '../config.json' )
+let OS     = require( 'os' ),
+    Config = require( '../config.json' ),
+    gid    = 1
 
-var Util = {
+const Util = {
     getIP() {
         var ifaces = OS.networkInterfaces(),
             ret    = []
@@ -18,6 +19,10 @@ var Util = {
 
     getPort() {
         return Config.port
+    },
+
+    generateID() {
+        return gid++
     }
 }
 

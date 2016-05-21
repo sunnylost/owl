@@ -1,5 +1,6 @@
 import actionTypes from '../util/actionTypes'
 import Server from '../server'
+import URL from '../model/url'
 
 export const changePort = port => {
     return {
@@ -62,23 +63,7 @@ export const search = ( keyword ) => {
 }
 
 export const addURL = ( data ) => {
-    let type = data.headers[ 'content-type' ],
-        url
-
-    if ( type ) {
-        type = type.match( /.+\/([^;]+)/ )
-        if ( type && type.length > 1 ) {
-            type = type[ 1 ]
-        }
-    }
-
-    type = type || 'html'
-
-    url = {
-        url    : data.url,
-        type   : type,
-        headers: data.headers
-    }
+    let url = new URL( data )
 
     global.Store.dispatch( {
         type: actionTypes.URL_ADD,
@@ -90,5 +75,11 @@ export const displayDetailURL = ( id ) => {
     return {
         type: actionTypes.URL_DETAIL,
         id
+    }
+}
+
+export const hideDetail = () => {
+    return {
+        type: actionTypes.URL_HIDE_DETAIL
     }
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { startServer, stopServer, changePort } from '../actions'
+import { startServer, stopServer, changePort, clearScreen } from '../actions'
 import Infobar from '../components/infobar'
 import Operationbar from '../components/operationbar'
 
@@ -25,6 +25,10 @@ const mapDispatchToProps = ( dispatch ) => {
 
         toggleServer( isStart ) {
             dispatch( ( isStart ? startServer : stopServer )() )
+        },
+
+        clear() {
+            dispatch( clearScreen() )
         }
     }
 }

@@ -1,11 +1,11 @@
 import React from 'react'
 import URLItem from './urlItem'
 
-const URLList = ( data ) => (
+const URLList = ( { urls, displayDetail }={} ) => (
     <ul className="list">
         {
-            data.urls.map( ( data, i ) => {
-                return <URLItem key={ i } { ...data }/>
+            urls.map( ( data ) => {
+                return <URLItem key={ data.id } displayDetail={ displayDetail } data={ data } />
             } )
         }
     </ul>

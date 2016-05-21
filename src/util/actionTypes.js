@@ -10,7 +10,9 @@ var actions = {};
     'URL_FILTER',
     'URL_FILTER_CLEAR',
     'URL_CLEAR',
-    'URL_SORT'
+    'URL_SORT',
+    'URL_DETAIL',
+    'URL_HIDE_DETAIL'
 ].forEach( name => actions[ name ] = name )
 
 export default actions
