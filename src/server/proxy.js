@@ -19,7 +19,7 @@ export default {
                     headers
                 }
 
-            var proxyReq = http.request( option, proxyRes => {
+            var proxyReq = Http.request( option, proxyRes => {
                 addURL( {
                     url,
                     headers

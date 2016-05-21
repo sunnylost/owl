@@ -1,0 +1,148 @@
+[class^="c-icon"] {
+    position         : relative;
+    display          : inline-block;
+    width            : 30px;
+    height           : 40px;
+    line-height      : 40px;
+    padding          : 0 5px;
+    margin-right     : 5px;
+    border-radius    : 5px;
+    color            : #f9fffc;
+    background-color : #333032;
+    font-style       : normal;
+    font-size        : 12px;
+    font-weight      : bold;
+    text-transform   : uppercase;
+    text-align       : center;
+    vertical-align   : top;
+}
+
+/* default text */
+[class^="c-icon"]::before {
+    content       : "." attr(data-type);
+    display       : inline-block;
+    white-space   : nowrap;
+    overflow      : hidden;
+    text-overflow : ellipsis;
+}
+
+/*===========================================
+                  .JS
+=============================================*/
+.c-icon-js {
+    background-color : #f6b744;
+}
+
+.c-icon-js::before {
+    content : '.js'
+}
+
+/*===========================================
+                  .CSS
+=============================================*/
+.c-icon-css {
+    background-color : #3aa441;
+}
+
+.c-icon-css::before {
+    content : '{ : }'
+}
+
+/*===========================================
+                  .HTML
+=============================================*/
+.c-icon-html {
+    background-color : #f1725f;
+}
+
+.c-icon-html::before {
+    content : '</>'
+}
+
+/*===========================================
+                  .PPT
+=============================================*/
+.c-icon-ppt {
+    background-color : #AB1D11;
+}
+
+.c-icon-ppt::before {
+    content : '.ppt'
+}
+
+/*===========================================
+                  .PDF
+=============================================*/
+.c-icon-pdf {
+    background-color : #b7171f;
+}
+
+.c-icon-pdf::before {
+    content : '.pdf'
+}
+
+/*===========================================
+                  .PSD
+=============================================*/
+.c-icon-psd {
+    background-color : #69d0d0;
+}
+
+.c-icon-psd::before {
+    content : '.psd'
+}
+
+/*===========================================
+                  .GIF
+=============================================*/
+.c-icon-gif {
+    background-color : #12111f;
+}
+
+.c-icon-gif::before {
+    content : '.gif'
+}
+
+/*===========================================
+                  .ZIP
+=============================================*/
+.c-icon-zip {
+    background-color : #c77b3d;
+}
+
+.c-icon-zip::before {
+    content : '.zip'
+}
+
+/*===========================================
+                  .JPG
+=============================================*/
+.c-icon-jpg {
+    background-color : #f1592a;
+}
+
+.c-icon-jpg::before {
+    content : '.jpg'
+}
+
+/*===========================================
+                  .PNG
+=============================================*/
+.c-icon-png {
+    background-color : #fdb53f;
+}
+
+.c-icon-png::before {
+    content : '.png'
+}
+
+/*===========================================
+                  Unknown
+=============================================*/
+.c-icon-unknown {
+    background-color : #333032;
+}
+
+.c-icon-unknown::before {
+    content : 'ಠ_ಠ'
+}

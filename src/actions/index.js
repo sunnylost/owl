@@ -61,9 +61,34 @@ export const search = ( keyword ) => {
     }
 }
 
-export const addURL = ( url ) => {
+export const addURL = ( data ) => {
+    let type = data.headers[ 'content-type' ],
+        url
+
+    if ( type ) {
+        type = type.match( /.+\/([^;]+)/ )
+        if ( type && type.length > 1 ) {
+            type = type[ 1 ]
+        }
+    }
+
+    type = type || 'html'
+
+    url = {
+        url    : data.url,
+        type   : type,
+        headers: data.headers
+    }
+
     global.Store.dispatch( {
         type: actionTypes.URL_ADD,
         url
     } )
+}
+
+export const displayDetailURL = ( id ) => {
+    return {
+        type: actionTypes.URL_DETAIL,
+        id
+    }
 }
