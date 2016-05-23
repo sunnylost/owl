@@ -1,10 +1,18 @@
 import Util from '../util'
 
+//TODO
 let parseType = headers => {
-    let type = headers[ 'content-type' ]
+    let type   = headers[ 'content-type' ],
+        accept = headers.accept
 
     if ( type ) {
         [ , type ] = type.match( /.+\/([^;]+)/ )
+    } else if ( accept ) {
+        [ , type ] = accept.match( /^([^\/]+)\// )
+
+        if ( type === '*' ) {
+            type = 'other'
+        }
     }
 
     return type || 'html'
