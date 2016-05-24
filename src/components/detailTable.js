@@ -3,19 +3,20 @@ import React from 'react'
 class DetailTable extends React.Component {
     render() {
         console.log( this.props )
-        let { general, reqHeaders, resHeaders, url, type } = this.props,
-            reqHeadersArray = [],
-            resHeadersArray = [],
-            key
+        let { general, reqHeaders, resHeaders, url, query, type } = this.props,
+            queryElement = ''
+        console.log( 'QUERY = ', query )
 
-        for ( key in reqHeaders ) {
-            reqHeadersArray.push( <li key={ key }><b>{ key }:</b> { reqHeaders[ key ] }</li> )
+        if ( query ) {
+            queryElement = ( <section>
+                <h4>Query String Parameters</h4>
+                <ul>
+                    { query.map( ( [ key, value ] ) => {
+                        return <li key={ key }><b>{ key }:</b> { value }</li>
+                    } ) }
+                </ul>
+            </section>)
         }
-
-        for ( key in resHeaders ) {
-            resHeadersArray.push( <li key={ key }><b>{ key}:</b> { resHeaders[ key ] }</li> )
-        }
-
 
         return <div className="detail-table">
             <ul className="tab">
@@ -35,15 +36,20 @@ class DetailTable extends React.Component {
                 <section>
                     <h4>Response Headers</h4>
                     <ul>
-                        { resHeadersArray }
+                        { resHeaders.map( ( [ key, value ] ) => {
+                            return <li key={ key }><b>{ key }:</b> { value }</li>
+                        } ) }
                     </ul>
                 </section>
                 <section>
                     <h4>Request Headers</h4>
                     <ul>
-                        { reqHeadersArray }
+                        { reqHeaders.map( ( [ key, value ] ) => {
+                            return <li key={ key }><b>{ key }:</b> { value }</li>
+                        } ) }
                     </ul>
                 </section>
+                { queryElement }
                 <div></div>
                 <div></div>
             </div>
