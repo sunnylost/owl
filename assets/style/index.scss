@@ -1,0 +1,158 @@
+$color : #3e454d;
+$grayColor : #ccc;
+
+html, body, #app, #app > div {
+  height : 100%;
+}
+
+/**
+    buttons
+*/
+button {
+  width         : 60px;
+  margin-right  : 10px;
+  padding       : 5px;
+  border        : none;
+  border-radius : 2px;
+  background    : #5e6771;
+  color         : #fff;
+  cursor        : pointer;
+
+  &:active {
+    background-color : $color;
+  }
+
+  &.prepare {
+    background-color : #00aeef;
+  }
+
+  &.disabled {
+    background-color : #ccc;
+  }
+
+  &.danger {
+    background-color : #ff7d7e;
+  }
+}
+
+/**
+    Header
+*/
+.toolbar {
+  height      : 15%;
+  font-size   : 14px;
+  line-height : 36px;
+  color       : #fff;
+}
+
+.operate {
+  padding : 10px 20px;
+}
+
+.operate span {
+  color : $color;
+}
+
+.info {
+  padding-left     : 20px;
+  background-color : $color;
+}
+
+/**
+    URL Area
+*/
+.url-area {
+  height   : 40%;
+  margin   : 10px;
+  padding  : 5px;
+  overflow : scroll;
+  border   : 1px solid;
+}
+
+.url {
+  &.item {
+    margin-bottom : 5px;
+    height        : 40px;
+    line-height   : 40px;
+    font-size     : 16px;
+  }
+
+  &.item:nth-child( odd ) {
+    background-color : #f5f5f5;
+  }
+
+  &.item:hover {
+    background-color : #def;
+  }
+
+  &.item.active {
+    color            : #fff;
+    background-color : coral;
+  }
+
+  &.val {
+    display       : inline-block;
+    white-space   : nowrap;
+    width         : 90%;
+    font-size     : 16px;
+    text-overflow : ellipsis;
+    overflow      : hidden;
+  }
+}
+
+/*
+    URL Detail
+*/
+.detail-area {
+  height     : 40%;
+  margin-top : 10px;
+}
+
+.detail-table {
+  height : 92%;
+  margin : 10px 10px 0 10px;
+  border : 1px solid;
+}
+
+.tab {
+  height        : 20px;
+  padding       : 5px 5px 0 5px;
+  border-bottom : 1px solid $grayColor;
+}
+
+.tab-item {
+  display        : inline-block;
+  margin         : 0 3px;
+  padding        : 5px 5px 0;
+  vertical-align : bottom;
+  border         : 1px solid transparent;
+  border-bottom  : none;
+  cursor         : pointer;
+
+  &.active {
+    border-color : currentColor;
+  }
+}
+
+.tab-content {
+  height   : calc(100% - 25px);
+  padding  : 5px;
+  overflow : scroll;
+
+  section {
+    border-bottom : 1px solid $grayColor;
+  }
+
+  ul {
+    margin : 2px 0 2px 1em;
+  }
+
+  li {
+    line-height : 16px;
+  }
+}
+
+.show {
+  display : block;
+}
+

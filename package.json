@@ -11,7 +11,9 @@
     "height": 600
   },
   "scripts": {
-    "build": "babel src -w -d build"
+    "build": "babel src -w -d build",
+    "build-css": "node-sass assets/style/index.scss assets/style/index.css",
+    "css": "nodemon -e scss -x \"npm run build-css\""
   },
   "dependencies": {
     "react": "^15.0.1",
@@ -31,6 +33,8 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.8.0",
     "babel-plugin-transform-object-assign": "^6.8.0",
     "babel-plugin-transform-react-display-name": "^6.8.0",
-    "babel-plugin-transform-react-jsx": "^6.8.0"
+    "babel-plugin-transform-react-jsx": "^6.8.0",
+    "node-sass": "^3.7.0",
+    "nodemon": "^1.9.2"
   }
 }
