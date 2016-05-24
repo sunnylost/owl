@@ -152,6 +152,14 @@ button {
   }
 }
 
+.tab-content-item {
+  display : none;
+
+  &.active {
+    display : block;
+  }
+}
+
 .show {
   display : block;
 }

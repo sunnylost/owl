@@ -114,5 +114,10 @@ button {
   .tab-content li {
     line-height: 16px; }
 
+.tab-content-item {
+  display: none; }
+  .tab-content-item.active {
+    display: block; }
+
 .show {
   display: block; }

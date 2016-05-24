@@ -21,7 +21,19 @@ export default {
 
             //TODO
             var proxyReq = Http.request( option, proxyRes => {
-                addURL( req, proxyRes )
+                let body = []
+
+                proxyRes.on( 'data', data => {
+                    body.push( data.toString() )
+                } )
+
+                proxyRes.on( 'end', () => {
+                    addURL( {
+                        req,
+                        res: proxyRes,
+                        body
+                    } )
+                } )
                 res.writeHead( proxyRes.statusCode, proxyRes.headers )
                 proxyRes.pipe( res )
             } )

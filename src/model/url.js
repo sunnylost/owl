@@ -32,7 +32,7 @@ let parseType       = headers => {
     }
 
 class URL {
-    constructor( req, res ) {
+    constructor( { req, res, body } ) {
         return {
             id        : Util.generateID(),
             url       : req.url,
@@ -44,7 +44,8 @@ class URL {
             },
             reqHeaders: parseObjToArray( req.headers ),
             resHeaders: parseObjToArray( res.headers ),
-            query     : parseQuery( req.url )
+            query     : parseQuery( req.url ),
+            body
         }
     }
 }
