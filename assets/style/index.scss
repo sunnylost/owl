@@ -153,11 +153,28 @@ button {
 }
 
 .tab-content-item {
-  display : none;
+  display  : none;
+  position : relative;
+  height   : 100%;
 
   &.active {
     display : block;
   }
+}
+
+.blank {
+  position    : absolute;
+  top         : 0;
+  left        : 0;
+  right       : 0;
+  bottom      : 0;
+  height      : 30px;
+  line-height : 30px;
+  margin      : auto;
+  text-align  : center;
+  font-size   : 25px;
+  font-weight : bold;
+  color       : #b2b2b2;
 }
 
 .show {

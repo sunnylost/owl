@@ -28,7 +28,8 @@ class DetailTable extends React.Component {
     render() {
         console.log( this.props )
         let { general, reqHeaders, resHeaders, url, query, body, type } = this.props,
-            queryElement = ''
+            queryElement = '',
+            bodyElement
 
         if ( query ) {
             queryElement = ( <section>
@@ -39,6 +40,12 @@ class DetailTable extends React.Component {
                     } ) }
                 </ul>
             </section>)
+        }
+
+        if (body.length) {
+            bodyElement = body
+        } else {
+            bodyElement = <p className="blank">This Request has no response data available.</p>
         }
 
         return <div className="detail-table">
@@ -78,7 +85,9 @@ class DetailTable extends React.Component {
                 <div className="tab-content-item" ref="content-1">
 
                 </div>
-                <div className="tab-content-item" ref="content-2"></div>
+                <div className="tab-content-item" ref="content-2">
+                    { bodyElement }
+                </div>
             </div>
         </div>
     }
