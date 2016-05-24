@@ -19,12 +19,18 @@ let parseType = headers => {
 }
 
 class URL {
-    constructor( data ) {
+    constructor( req, res ) {
         return {
-            id     : Util.generateID(),
-            url    : data.url,
-            type   : parseType( data.headers ),
-            headers: data.headers
+            id        : Util.generateID(),
+            url       : req.url,
+            type      : parseType( res.headers ),
+            general   : {
+                url   : req.url,
+                method: req.method,
+                status: res.statusCode
+            },
+            reqHeaders: req.headers,
+            resHeaders: res.headers
         }
     }
 }

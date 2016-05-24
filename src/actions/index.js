@@ -62,8 +62,8 @@ export const search = ( keyword ) => {
     }
 }
 
-export const addURL = ( data ) => {
-    let url = new URL( data )
+export const addURL = ( req, res ) => {
+    let url = new URL( req, res )
 
     global.Store.dispatch( {
         type: actionTypes.URL_ADD,

@@ -19,11 +19,9 @@ export default {
                     headers
                 }
 
+            //TODO
             var proxyReq = Http.request( option, proxyRes => {
-                addURL( {
-                    url,
-                    headers
-                } )
+                addURL( req, proxyRes )
                 res.writeHead( proxyRes.statusCode, proxyRes.headers )
                 proxyRes.pipe( res )
             } )

@@ -4,12 +4,17 @@ import DetailTable from '../components/detailTable'
 
 class DetailArea extends React.Component {
     render() {
-        console.log(this.props)
-        let props = this.props,
-            className = 'detail-area ' + ( this.props.data ? 'show' : '' )
+        console.log( this.props )
+        let props     = this.props,
+            className = 'detail-area'
+
+        if ( props.data ) {
+            return <div className={ className }>
+                <DetailTable { ...props.data }/>.
+            </div>
+        }
 
         return <div className={ className }>
-            <DetailTable { ...props.data }/>.
         </div>
     }
 }
