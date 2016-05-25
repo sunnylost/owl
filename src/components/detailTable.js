@@ -42,7 +42,7 @@ class DetailTable extends React.Component {
             </section>)
         }
 
-        if (body.length) {
+        if ( body.length ) {
             bodyElement = body
         } else {
             bodyElement = <p className="blank">This Request has no response data available.</p>

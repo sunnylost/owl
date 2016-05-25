@@ -1,4 +1,6 @@
 import Http from 'http'
+import Zlib from 'zlib'
+import { Transform } from 'stream'
 import { addURL } from '../actions'
 
 let server
@@ -21,21 +23,46 @@ export default {
 
             //TODO
             var proxyReq = Http.request( option, proxyRes => {
-                let body = []
+                res.writeHead( proxyRes.statusCode, proxyRes.headers )
 
-                proxyRes.on( 'data', data => {
-                    body.push( data.toString() )
-                } )
+                let chunks = [],
+                    isZip  = proxyRes.headers[ 'content-encoding' ] === 'gzip',
+                    parser = new Transform( {
+                        transform( chunk, encoding, next ) {
+                            chunks.push( chunk )
+                            this.push( chunk )
+                            next()
+                        },
 
-                proxyRes.on( 'end', () => {
+                        flush( done ) {
+                            let finish = ( err, buffer ) => {
+                                    addURL( {
+                                        req,
+                                        res : proxyRes,
+                                        body: buffer.toString()
+                                    } )
+                                    this.push( null )
+                                    done()
+                                },
+                                buffer = Buffer.concat( chunks )
+
+                            if ( isZip ) {
+                                Zlib.unzip( buffer, finish )
+                            } else {
+                                finish( null, buffer )
+                            }
+                        }
+                    } )
+
+                parser.on( 'end', () => {
                     addURL( {
                         req,
-                        res: proxyRes,
-                        body
+                        res : proxyRes,
+                        body: Buffer.concat( chunks ).toString()
                     } )
                 } )
-                res.writeHead( proxyRes.statusCode, proxyRes.headers )
-                proxyRes.pipe( res )
+
+                proxyRes.pipe( parser ).pipe( res )
             } )
 
             req.pipe( proxyReq )
