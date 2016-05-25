@@ -1,5 +1,6 @@
 import Util from '../util'
 import urlLib from 'url'
+import MIMEType from '../util/mimeType'
 
 //TODO
 let parseType       = headers => {
@@ -7,8 +8,9 @@ let parseType       = headers => {
             accept = headers.accept
 
         if ( type ) {
-            [ , type ] = type.match( /.+\/([^;]+)/ )
+            return MIMEType( type )
         } else if ( accept ) {
+            //TODO
             [ , type ] = accept.match( /^([^\/]+)\// )
 
             if ( type === '*' ) {
@@ -16,7 +18,7 @@ let parseType       = headers => {
             }
         }
 
-        return type || 'html'
+        return type || 'other'
     },
 
     parseObjToArray = obj => {

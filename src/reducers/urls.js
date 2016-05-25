@@ -20,7 +20,8 @@ const filterTypes  = Const.filter.map( item => item.value ),
 clear( initialState )
 
 const urls = ( state = initialState, action ) => {
-    let current = state.current,
+    let all     = state.all,
+        current = state.current,
         url, selected
 
     switch ( action.type ) {
@@ -32,7 +33,7 @@ const urls = ( state = initialState, action ) => {
             }
 
             return Object.assign( {}, state, {
-                all    : [ ...current, action.url ],
+                all    : [ ...all, action.url ],
                 current: [ ...current, action.url ]
             } )
 

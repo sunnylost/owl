@@ -28,9 +28,13 @@ class URLFilter extends React.Component {
     render() {
         return <ul className="filter">
             { Const.filter.map( ( { text, value }, i ) => {
-                let className = `item ${ i == 0 ? ACTIVE : ''}`
-                return <li ref={ i } className={ className } key={ i } data-value={ value }
-                           onClick={ this.filter }>{ text }</li>
+                let className = `item ${ i == 0 ? ACTIVE : '' }`
+                return <li
+                    ref={ i }
+                    className={ className }
+                    key={ i }
+                    data-value={ value }
+                    onClick={ this.filter }>{ text }</li>
             } ) }
         </ul>
     }
