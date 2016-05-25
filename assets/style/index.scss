@@ -167,16 +167,26 @@ button {
 }
 
 .tab-content {
-  height   : calc(100% - 25px);
+  height   : calc(100% - 35px);
   padding  : 5px;
   overflow : scroll;
 
-  section {
+  section:not(:last-child) {
     border-bottom : 1px solid $grayColor;
   }
 
-  ul {
-    margin : 2px 0 2px 1em;
+  .headers {
+    ul {
+      margin : 2px 0 2px 1em;
+    }
+
+    li {
+      color : #5a59ff;
+
+      b {
+        color : #CE2551;
+      }
+    }
   }
 
   li {
@@ -188,14 +198,6 @@ button {
   b {
     font-family : sans-serif;
     font-size   : 13px;
-  }
-
-  .headers li {
-    color : #5a59ff;
-
-    b {
-      color : #CE2551;
-    }
   }
 }
 
@@ -227,5 +229,39 @@ button {
 
 .show {
   display : block;
+}
+
+/*
+  Console
+*/
+
+.console-wrap, .console, .console .list {
+  height : 100%;
+}
+
+.console {
+  overflow : scroll;
+
+  .line {
+    position      : relative;
+    padding-left  : 1em;
+    height        : 20px;
+    line-height   : 20px;
+    font-size     : 14px;
+    overflow      : visible;
+    outline       : none;
+    border-bottom : 1px solid #f0f0f0;
+  }
+
+  .cur {
+    border-bottom : 0;
+
+    &:before {
+      content  : ">";
+      position : absolute;
+      left     : 0;
+      color    : #5d84f2;
+    }
+  }
 }
 

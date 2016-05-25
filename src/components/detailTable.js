@@ -1,4 +1,5 @@
 import React from 'react'
+import Console from '../containers/console'
 
 const ACTIVE     = 'active',
       bodyFilter = [ 'image' ]
@@ -31,7 +32,7 @@ class DetailTable extends React.Component {
         let { general, reqHeaders, resHeaders, url, query, body, type } = this.props,
             queryElement = '',
             bodyElement
-        console.log( 'TYPE === ', type )
+
         if ( query ) {
             queryElement = ( <section>
                 <h4>Query String Parameters</h4>
@@ -54,6 +55,7 @@ class DetailTable extends React.Component {
                 <li className="tab-item active" ref="tab-item-0" data-index="0">Headers</li>
                 <li className="tab-item" ref="tab-item-1" data-index="1">Preview</li>
                 <li className="tab-item" ref="tab-item-2" data-index="2">Response</li>
+                <li className="tab-item" ref="tab-item-3" data-index="3">Console</li>
             </ul>
             <div className="tab-content">
                 <div className="tab-content-item active" ref="content-0">
@@ -88,6 +90,9 @@ class DetailTable extends React.Component {
                 </div>
                 <div className="tab-content-item" ref="content-2">
                     { bodyElement }
+                </div>
+                <div className="tab-content-item" ref="content-3">
+                    <Console />
                 </div>
             </div>
         </div>

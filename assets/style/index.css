@@ -126,13 +126,17 @@ button {
     border-color: currentColor; }
 
 .tab-content {
-  height: calc(100% - 25px);
+  height: calc(100% - 35px);
   padding: 5px;
   overflow: scroll; }
-  .tab-content section {
+  .tab-content section:not(:last-child) {
     border-bottom: 1px solid #ccc; }
-  .tab-content ul {
+  .tab-content .headers ul {
     margin: 2px 0 2px 1em; }
+  .tab-content .headers li {
+    color: #5a59ff; }
+    .tab-content .headers li b {
+      color: #CE2551; }
   .tab-content li {
     line-height: 16px;
     word-break: break-all;
@@ -140,10 +144,6 @@ button {
   .tab-content b {
     font-family: sans-serif;
     font-size: 13px; }
-  .tab-content .headers li {
-    color: #5a59ff; }
-    .tab-content .headers li b {
-      color: #CE2551; }
 
 .tab-content-item {
   display: none;
@@ -169,3 +169,28 @@ button {
 
 .show {
   display: block; }
+
+/*
+  Console
+*/
+.console-wrap, .console, .console .list {
+  height: 100%; }
+
+.console {
+  overflow: scroll; }
+  .console .line {
+    position: relative;
+    padding-left: 1em;
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    overflow: visible;
+    outline: none;
+    border-bottom: 1px solid #f0f0f0; }
+  .console .cur {
+    border-bottom: 0; }
+    .console .cur:before {
+      content: ">";
+      position: absolute;
+      left: 0;
+      color: #5d84f2; }
