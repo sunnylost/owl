@@ -60,89 +60,34 @@
 }
 
 /*===========================================
-                  .PPT
+                  JSON
 =============================================*/
-.c-icon-ppt {
-    background-color : #AB1D11;
-}
-
-.c-icon-ppt::before {
-    content : '.ppt'
-}
-
-/*===========================================
-                  .PDF
-=============================================*/
-.c-icon-pdf {
-    background-color : #b7171f;
-}
-
-.c-icon-pdf::before {
-    content : '.pdf'
-}
-
-/*===========================================
-                  .PSD
-=============================================*/
-.c-icon-psd {
+.c-icon-json {
     background-color : #69d0d0;
 }
 
-.c-icon-psd::before {
-    content : '.psd'
+.c-icon-json::before {
+    content : 'json'
 }
 
 /*===========================================
-                  .GIF
+                  IMAGE
 =============================================*/
-.c-icon-gif {
-    background-color : #12111f;
-}
-
-.c-icon-gif::before {
-    content : '.gif'
-}
-
-/*===========================================
-                  .ZIP
-=============================================*/
-.c-icon-zip {
-    background-color : #c77b3d;
-}
-
-.c-icon-zip::before {
-    content : '.zip'
-}
-
-/*===========================================
-                  .JPG
-=============================================*/
-.c-icon-jpg {
+.c-icon-img {
     background-color : #f1592a;
 }
 
-.c-icon-jpg::before {
-    content : '.jpg'
-}
-
-/*===========================================
-                  .PNG
-=============================================*/
-.c-icon-png {
-    background-color : #fdb53f;
-}
-
-.c-icon-png::before {
-    content : '.png'
+.c-icon-img::before {
+    content : 'img'
 }
 
 /*===========================================
                   Unknown
 =============================================*/
-.c-icon-unknown {
+.c-icon-other {
     background-color : #333032;
 }
 
-.c-icon-unknown::before {
+.c-icon-other::before {
     content : 'ಠ_ಠ'
 }
