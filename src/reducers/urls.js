@@ -1,6 +1,7 @@
 import actionTypes from '../util/actionTypes'
+import Const from '../util/const'
 
-const filterTypes  = [ 'all', 'xhr', 'js', 'css', 'img', 'other' ],
+const filterTypes  = Const.filter.map( item => item.value ),
       initialState = {
           filter: filterTypes[ 0 ],
           filterTypes
@@ -24,7 +25,14 @@ const urls = ( state = initialState, action ) => {
 
     switch ( action.type ) {
         case actionTypes.URL_ADD:
+            let { type } = action.url
+
+            if ( state[ type ] ) {
+                state[ type ].push( action.url )
+            }
+
             return Object.assign( {}, state, {
+                all    : [ ...current, action.url ],
                 current: [ ...current, action.url ]
             } )
 
@@ -48,6 +56,11 @@ const urls = ( state = initialState, action ) => {
             return Object.assign( {}, state, {
                 current : [ ...current ],
                 selected: url
+            } )
+
+        case actionTypes.URL_FILTER:
+            return Object.assign( {}, state, {
+                current: [ ...state[ action.filterType ] ]
             } )
 
         case actionTypes.URL_HIDE_DETAIL:

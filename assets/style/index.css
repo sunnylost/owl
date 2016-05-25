@@ -46,16 +46,38 @@ button {
 */
 .url-area {
   height: 40%;
-  margin: 10px;
-  padding: 5px;
-  overflow: scroll;
-  border: 1px solid; }
+  margin: 10px; }
+  .url-area .filter {
+    height: 20px;
+    margin-bottom: 3px; }
+    .url-area .filter li {
+      display: inline-block;
+      height: 20px;
+      line-height: 20px;
+      margin: 0 5px;
+      padding: 0 10px;
+      font-size: 15px;
+      text-align: center;
+      background-color: #eee;
+      border-radius: 3px;
+      cursor: pointer; }
+      .url-area .filter li:hover {
+        background-color: #e3e3e3; }
+      .url-area .filter li.active {
+        color: #fff;
+        background-color: #699bd8; }
+  .url-area .list {
+    height: calc(100% - 30px);
+    padding: 5px 5px 0;
+    overflow: scroll;
+    border: 1px solid; }
 
 .url.item {
   margin-bottom: 5px;
   height: 40px;
   line-height: 40px;
-  font-size: 16px; }
+  font-size: 16px;
+  cursor: pointer; }
 
 .url.item:nth-child(odd) {
   background-color: #f5f5f5; }
@@ -65,7 +87,7 @@ button {
 
 .url.item.active {
   color: #fff;
-  background-color: coral; }
+  background-color: #699bce; }
 
 .url.val {
   display: inline-block;
@@ -118,6 +140,10 @@ button {
   .tab-content b {
     font-family: sans-serif;
     font-size: 13px; }
+  .tab-content .headers li {
+    color: #5a59ff; }
+    .tab-content .headers li b {
+      color: #CE2551; }
 
 .tab-content-item {
   display: none;

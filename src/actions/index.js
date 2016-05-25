@@ -78,6 +78,13 @@ export const displayDetailURL = ( id ) => {
     }
 }
 
+export const filterURL = ( filterType ) => {
+    return {
+        type: actionTypes.URL_FILTER,
+        filterType
+    }
+}
+
 export const hideDetail = () => {
     return {
         type: actionTypes.URL_HIDE_DETAIL

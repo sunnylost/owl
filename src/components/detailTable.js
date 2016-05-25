@@ -1,6 +1,7 @@
 import React from 'react'
 
-const ACTIVE = 'active'
+const ACTIVE     = 'active',
+      bodyFilter = [ 'image' ]
 
 class DetailTable extends React.Component {
     constructor() {
@@ -30,7 +31,7 @@ class DetailTable extends React.Component {
         let { general, reqHeaders, resHeaders, url, query, body, type } = this.props,
             queryElement = '',
             bodyElement
-
+        console.log( 'TYPE === ', type )
         if ( query ) {
             queryElement = ( <section>
                 <h4>Query String Parameters</h4>
@@ -64,7 +65,7 @@ class DetailTable extends React.Component {
                             <li><b>Status Code:</b> { general.status }</li>
                         </ul>
                     </section>
-                    <section>
+                    <section className="headers">
                         <h4>Response Headers</h4>
                         <ul>
                             { resHeaders.map( ( [ key, value ] ) => {
@@ -72,7 +73,7 @@ class DetailTable extends React.Component {
                             } ) }
                         </ul>
                     </section>
-                    <section>
+                    <section className="headers">
                         <h4>Request Headers</h4>
                         <ul>
                             { reqHeaders.map( ( [ key, value ] ) => {
