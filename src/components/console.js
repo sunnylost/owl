@@ -7,11 +7,6 @@ class Console extends React.Component {
         super()
         this.handleChange = this.handleChange.bind( this )
         this.handleFocus  = this.handleFocus.bind( this )
-        this.state        = {
-            commands: [ {
-                isCur: true
-            } ]
-        }
     }
 
     handleFocus( e ) {
@@ -19,36 +14,26 @@ class Console extends React.Component {
     }
 
     handleChange( e ) {
-        let el       = e.target,
-            commands = this.state.commands
+        let el    = e.target,
+            value = el.value.trim()
 
-        if ( e.keyCode == 13 ) {
-            el.classList.remove( CUR )
-            commands[ commands.length - 1 ].isCur = false
-            commands.push( {
-                isCur: true
-            } )
-            this.setState( {
-                commands
-            } )
-            setTimeout( () => {
-                this.refs.list.lastChild.focus()
-            }, 0 )
+        if ( e.keyCode == 13 && value ) {
+            el.value = ''
+            this.props.execute( value )
         }
     }
 
     render() {
         return <div className="console">
             <ul className="list" ref="list">
-                { this.state.commands.map( ( command, index ) => {
+                { this.props.history.map( ( command, index ) => {
                     return <li
                         key={ index }
-                        className={ command.isCur ? 'line cur' : 'line' }
-                        contentEditable={ true }
-                        onKeyUp={ this.handleChange }
+                        className="line"
                     >{ command.value }</li>
                 } ) }
             </ul>
+            <input type="text" className="input" placeholder="input command to execute" onKeyUp={ this.handleChange }/>
         </div>
     }
 }

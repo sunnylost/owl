@@ -69,6 +69,8 @@ export const addURL = ( data ) => {
         type: actionTypes.URL_ADD,
         url
     } )
+
+    return url
 }
 
 export const displayDetailURL = ( id ) => {
@@ -88,5 +90,12 @@ export const filterURL = ( filterType ) => {
 export const hideDetail = () => {
     return {
         type: actionTypes.URL_HIDE_DETAIL
+    }
+}
+
+export const executeCommand = ( command ) => {
+    return {
+        type: actionTypes.COMMAND_EXECUTE,
+        command
     }
 }

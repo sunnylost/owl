@@ -12,7 +12,9 @@ var actions = {};
     'URL_CLEAR',
     'URL_SORT',
     'URL_DETAIL',
-    'URL_HIDE_DETAIL'
+    'URL_HIDE_DETAIL',
+    'COMMAND_EXECUTE',
+    'COMMAND_RESULT'
 ].forEach( name => actions[ name ] = name )
 
 export default actions

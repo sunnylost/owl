@@ -173,24 +173,26 @@ button {
 /*
   Console
 */
-.console-wrap, .console, .console .list {
+.console-wrap, .console {
   height: 100%; }
 
-.console {
+.console .list {
+  height: calc(100% - 32px);
   overflow: scroll; }
-  .console .line {
-    position: relative;
-    padding-left: 1em;
-    height: 20px;
-    line-height: 20px;
-    font-size: 14px;
-    overflow: visible;
-    outline: none;
-    border-bottom: 1px solid #f0f0f0; }
-  .console .cur {
-    border-bottom: 0; }
-    .console .cur:before {
-      content: ">";
-      position: absolute;
-      left: 0;
-      color: #5d84f2; }
+
+.console .line {
+  position: relative;
+  padding-left: 2px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 14px;
+  overflow: visible;
+  outline: none;
+  border-bottom: 1px solid #f0f0f0; }
+
+.console .input {
+  display: block;
+  width: 99%;
+  height: 25px;
+  line-height: 25px;
+  font-size: 16px; }
