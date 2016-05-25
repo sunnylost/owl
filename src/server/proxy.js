@@ -3,6 +3,11 @@ import Zlib from 'zlib'
 import { Transform } from 'stream'
 import { addURL } from '../actions'
 
+const zipMethodMap = {
+    'gzip'   : 'unzip',
+    'deflate': 'Inflate'
+}
+
 let server
 
 export default {
@@ -25,9 +30,9 @@ export default {
             var proxyReq = Http.request( option, proxyRes => {
                 res.writeHead( proxyRes.statusCode, proxyRes.headers )
 
-                let chunks = [],
-                    isZip  = proxyRes.headers[ 'content-encoding' ] === 'gzip',
-                    parser = new Transform( {
+                let chunks    = [],
+                    zipMethod = proxyRes.headers[ 'content-encoding' ],
+                    parser    = new Transform( {
                         transform( chunk, encoding, next ) {
                             chunks.push( chunk )
                             this.push( chunk )
@@ -39,28 +44,20 @@ export default {
                                     addURL( {
                                         req,
                                         res : proxyRes,
-                                        body: buffer.toString()
+                                        body: buffer ? buffer.toString() : ''
                                     } )
                                     this.push( null )
                                     done()
                                 },
                                 buffer = Buffer.concat( chunks )
 
-                            if ( isZip ) {
-                                Zlib.unzip( buffer, finish )
+                            if ( zipMethod ) {
+                                Zlib[ zipMethodMap[ zipMethod ] ]( buffer, finish )
                             } else {
                                 finish( null, buffer )
                             }
                         }
                     } )
-
-                parser.on( 'end', () => {
-                    addURL( {
-                        req,
-                        res : proxyRes,
-                        body: Buffer.concat( chunks ).toString()
-                    } )
-                } )
 
                 proxyRes.pipe( parser ).pipe( res )
             } )
