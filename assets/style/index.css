@@ -22,24 +22,32 @@ button {
   button.danger {
     background-color: #ff7d7e; }
 
-/**
-    Header
+/*
+  Console
 */
-.toolbar {
-  height: 15%;
+.console-wrap, .console {
+  height: 100%; }
+
+.console .list {
+  height: calc(100% - 32px);
+  overflow: scroll; }
+
+.console .line {
+  position: relative;
+  padding-left: 2px;
+  height: 20px;
+  line-height: 20px;
   font-size: 14px;
-  line-height: 36px;
-  color: #fff; }
+  overflow: visible;
+  outline: none;
+  border-bottom: 1px solid #f0f0f0; }
 
-.operate {
-  padding: 10px 20px; }
-
-.operate span {
-  color: #3e454d; }
-
-.info {
-  padding-left: 20px;
-  background-color: #3e454d; }
+.console .input {
+  display: block;
+  width: 99%;
+  height: 25px;
+  line-height: 25px;
+  font-size: 16px; }
 
 /**
     URL Area
@@ -170,29 +178,21 @@ button {
 .show {
   display: block; }
 
-/*
-  Console
+/**
+    Header
 */
-.console-wrap, .console {
-  height: 100%; }
-
-.console .list {
-  height: calc(100% - 32px);
-  overflow: scroll; }
-
-.console .line {
-  position: relative;
-  padding-left: 2px;
-  height: 20px;
-  line-height: 20px;
+.toolbar {
+  height: 15%;
   font-size: 14px;
-  overflow: visible;
-  outline: none;
-  border-bottom: 1px solid #f0f0f0; }
+  line-height: 36px;
+  color: #fff; }
 
-.console .input {
-  display: block;
-  width: 99%;
-  height: 25px;
-  line-height: 25px;
-  font-size: 16px; }
+.operate {
+  padding: 10px 20px; }
+
+.operate span {
+  color: #3e454d; }
+
+.info {
+  padding-left: 20px;
+  background-color: #3e454d; }

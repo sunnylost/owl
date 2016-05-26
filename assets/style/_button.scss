@@ -1,0 +1,30 @@
+
+/**
+    buttons
+*/
+button {
+  width         : 60px;
+  margin-right  : 10px;
+  padding       : 5px;
+  border        : none;
+  border-radius : 2px;
+  background    : #5e6771;
+  color         : #fff;
+  cursor        : pointer;
+
+  &:active {
+    background-color : $color;
+  }
+
+  &.prepare {
+    background-color : #00aeef;
+  }
+
+  &.disabled {
+    background-color : #ccc;
+  }
+
+  &.danger {
+    background-color : #ff7d7e;
+  }
+}

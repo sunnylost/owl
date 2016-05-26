@@ -1,0 +1,34 @@
+
+/*
+  Console
+*/
+
+.console-wrap, .console {
+  height : 100%;
+}
+
+.console {
+  .list {
+    height   : calc(100% - 32px);
+    overflow : scroll;
+  }
+
+  .line {
+    position      : relative;
+    padding-left  : 2px;
+    height        : 20px;
+    line-height   : 20px;
+    font-size     : 14px;
+    overflow      : visible;
+    outline       : none;
+    border-bottom : 1px solid #f0f0f0;
+  }
+
+  .input {
+    display     : block;
+    width       : 99%;
+    height      : 25px;
+    line-height : 25px;
+    font-size   : 16px;
+  }
+}
