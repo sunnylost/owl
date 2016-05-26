@@ -1,5 +1,109 @@
+@charset "UTF-8";
 html, body, #app, #app > div {
   height: 100%; }
+
+[class^="c-icon"] {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 5px;
+  margin-right: 5px;
+  border-radius: 5px;
+  color: #f9fffc;
+  background-color: #333032;
+  font-style: normal;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  vertical-align: top; }
+
+/* default text */
+[class^="c-icon"]::before {
+  content: "." attr(data-type);
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
+/*===========================================
+                  .JS
+=============================================*/
+.c-icon-js {
+  background-color: #f6b744; }
+
+.c-icon-js::before {
+  content: 'js'; }
+
+/*===========================================
+                  .CSS
+=============================================*/
+.c-icon-css {
+  background-color: #3aa441; }
+
+.c-icon-css::before {
+  content: '{ : }'; }
+
+/*===========================================
+                  .HTML
+=============================================*/
+.c-icon-html {
+  background-color: #f1725f; }
+
+.c-icon-html::before {
+  content: '</>'; }
+
+/*===========================================
+                  JSON
+=============================================*/
+.c-icon-json {
+  font-size: 8px;
+  background-color: #69d0d0; }
+
+.c-icon-json::before {
+  content: 'json'; }
+
+/*===========================================
+                  IMAGE
+=============================================*/
+.c-icon-img {
+  background-color: #f1592a; }
+
+.c-icon-img::before {
+  content: 'img'; }
+
+/*===========================================
+                  Unknown
+=============================================*/
+.c-icon-other {
+  background-color: #333032; }
+
+.c-icon-other::before {
+  content: 'ಠ_ಠ'; }
+
+/**
+    Header
+*/
+.toolbar {
+  height: 15%;
+  font-size: 14px;
+  line-height: 36px;
+  color: #fff; }
+  .toolbar label {
+    margin: 0 10px; }
+    .toolbar label input {
+      margin-left: 5px; }
+
+.operate {
+  padding: 10px 20px; }
+  .operate span {
+    color: #3e454d; }
+
+.info {
+  padding-left: 20px;
+  background-color: #3e454d; }
 
 /**
     buttons
@@ -79,12 +183,24 @@ button {
     padding: 5px 5px 0;
     overflow: scroll;
     border: 1px solid; }
+  .url-area table {
+    width: 100%;
+    border-collapse: collapse; }
+  .url-area th {
+    display: inline-block;
+    text-align: left; }
+  .url-area td {
+    width: 16.6%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; }
 
 .url.item {
+  display: block;
   margin-bottom: 5px;
-  height: 40px;
-  line-height: 40px;
-  font-size: 16px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 15px;
   cursor: pointer; }
 
 .url.item:nth-child(odd) {
@@ -177,22 +293,3 @@ button {
 
 .show {
   display: block; }
-
-/**
-    Header
-*/
-.toolbar {
-  height: 15%;
-  font-size: 14px;
-  line-height: 36px;
-  color: #fff; }
-
-.operate {
-  padding: 10px 20px; }
-
-.operate span {
-  color: #3e454d; }
-
-.info {
-  padding-left: 20px;
-  background-color: #3e454d; }

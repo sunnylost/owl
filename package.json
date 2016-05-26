@@ -1,7 +1,8 @@
 {
   "name": "owl",
   "main": "index.js",
-  "version": "0.0.1",
+  "version": "0.0.1-alpha",
+  "author": "sunnylost",
   "window": {
     "toolbar": false,
     "resizable": true,
@@ -9,6 +10,10 @@
     "icon": "assets/imgs/app.png",
     "width": 800,
     "height": 600
+  },
+  "build": {
+    "app-bundle-id": "your.id",
+    "app-category-type": "your.app.category.type"
   },
   "scripts": {
     "build": "babel src -w -d build",
@@ -20,7 +25,8 @@
     "react-dom": "^15.0.1",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "ws": "^1.1.0"
   },
   "repository": {
     "type": "git",

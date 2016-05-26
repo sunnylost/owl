@@ -1,0 +1,31 @@
+/**
+    Header
+*/
+.toolbar {
+  height      : 15%;
+  font-size   : 14px;
+  line-height : 36px;
+  color       : #fff;
+
+  label {
+    margin : 0 10px;
+
+    input {
+      margin-left : 5px;
+    }
+  }
+}
+
+.operate {
+  padding : 10px 20px;
+
+  span {
+    color : $color;
+  }
+}
+
+.info {
+  padding-left     : 20px;
+  background-color : $color;
+}
+

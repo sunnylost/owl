@@ -2,31 +2,9 @@ $color : #3e454d;
 $grayColor : #ccc;
 
 @import "base";
+@import "icon";
+@import "header";
 @import "button";
 @import "console";
 @import "url";
-
-/**
-    Header
-*/
-.toolbar {
-  height      : 15%;
-  font-size   : 14px;
-  line-height : 36px;
-  color       : #fff;
-}
-
-.operate {
-  padding : 10px 20px;
-}
-
-.operate span {
-  color : $color;
-}
-
-.info {
-  padding-left     : 20px;
-  background-color : $color;
-}
-
 

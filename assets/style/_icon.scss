@@ -1,93 +1,94 @@
 [class^="c-icon"] {
-    position         : relative;
-    display          : inline-block;
-    width            : 30px;
-    height           : 40px;
-    line-height      : 40px;
-    padding          : 0 5px;
-    margin-right     : 5px;
-    border-radius    : 5px;
-    color            : #f9fffc;
-    background-color : #333032;
-    font-style       : normal;
-    font-size        : 12px;
-    font-weight      : bold;
-    text-transform   : uppercase;
-    text-align       : center;
-    vertical-align   : top;
+  position         : relative;
+  display          : inline-block;
+  width            : 20px;
+  height           : 30px;
+  line-height      : 30px;
+  padding          : 0 5px;
+  margin-right     : 5px;
+  border-radius    : 5px;
+  color            : #f9fffc;
+  background-color : #333032;
+  font-style       : normal;
+  font-size        : 12px;
+  font-weight      : bold;
+  text-transform   : uppercase;
+  text-align       : center;
+  vertical-align   : top;
 }
 
 /* default text */
 [class^="c-icon"]::before {
-    content       : "." attr(data-type);
-    display       : inline-block;
-    white-space   : nowrap;
-    overflow      : hidden;
-    text-overflow : ellipsis;
+  content       : "." attr(data-type);
+  display       : inline-block;
+  white-space   : nowrap;
+  overflow      : hidden;
+  text-overflow : ellipsis;
 }
 
 /*===========================================
                   .JS
 =============================================*/
 .c-icon-js {
-    background-color : #f6b744;
+  background-color : #f6b744;
 }
 
 .c-icon-js::before {
-    content : '.js'
+  content : 'js'
 }
 
 /*===========================================
                   .CSS
 =============================================*/
 .c-icon-css {
-    background-color : #3aa441;
+  background-color : #3aa441;
 }
 
 .c-icon-css::before {
-    content : '{ : }'
+  content : '{ : }'
 }
 
 /*===========================================
                   .HTML
 =============================================*/
 .c-icon-html {
-    background-color : #f1725f;
+  background-color : #f1725f;
 }
 
 .c-icon-html::before {
-    content : '</>'
+  content : '</>'
 }
 
 /*===========================================
                   JSON
 =============================================*/
 .c-icon-json {
-    background-color : #69d0d0;
+  font-size        : 8px;
+  background-color : #69d0d0;
 }
 
 .c-icon-json::before {
-    content : 'json'
+  content : 'json'
 }
 
 /*===========================================
                   IMAGE
 =============================================*/
 .c-icon-img {
-    background-color : #f1592a;
+  background-color : #f1592a;
 }
 
 .c-icon-img::before {
-    content : 'img'
+  content : 'img'
 }
 
 /*===========================================
                   Unknown
 =============================================*/
 .c-icon-other {
-    background-color : #333032;
+  background-color : #333032;
 }
 
 .c-icon-other::before {
-    content : 'ಠ_ಠ'
+  content : 'ಠ_ಠ'
 }
