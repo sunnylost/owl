@@ -26,15 +26,15 @@ const urls = ( state = initialState, action ) => {
 
     switch ( action.type ) {
         case actionTypes.URL_ADD:
-            let { type } = action.url
+            let { type } = action.url,
+                newState = [ ...state[ type ], action.url ]
 
-            if ( state[ type ] ) {
-                state[ type ].push( action.url )
-            }
+            all.push( action.url )
 
             return Object.assign( {}, state, {
-                all    : [ ...all, action.url ],
-                current: [ ...current, action.url ]
+                all     : [ ...all ],
+                [ type ]: newState,
+                current : [ ...state[ state.filter ] ]
             } )
 
         case actionTypes.SCREEN_CLEAR:
@@ -61,7 +61,8 @@ const urls = ( state = initialState, action ) => {
 
         case actionTypes.URL_FILTER:
             return Object.assign( {}, state, {
-                current: [ ...state[ action.filterType ] ]
+                current: [ ...state[ action.filterType ] ],
+                filter : action.filterType
             } )
 
         case actionTypes.URL_HIDE_DETAIL:
