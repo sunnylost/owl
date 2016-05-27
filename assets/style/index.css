@@ -183,20 +183,10 @@ button {
     padding: 5px 5px 0;
     overflow: scroll;
     border: 1px solid; }
-  .url-area table {
-    width: 100%;
-    border-collapse: collapse; }
-  .url-area th {
-    display: inline-block;
-    text-align: left; }
-  .url-area td {
-    width: 16.6%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis; }
 
-.url.item {
+.url.item, .url.col-header {
   display: block;
+  width: 100%;
   margin-bottom: 5px;
   height: 30px;
   line-height: 30px;
@@ -220,6 +210,18 @@ button {
   font-size: 16px;
   text-overflow: ellipsis;
   overflow: hidden; }
+
+.url .piece {
+  display: inline-block;
+  width: 18%;
+  min-width: 50px;
+  padding: 0 5px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+  .url .piece:first-child {
+    width: 50px; }
 
 /*
     URL Detail

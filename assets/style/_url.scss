@@ -41,11 +41,13 @@
 }
 
 .url {
-  &.item {
+  &.item, &.col-header {
+    display       : block;
+    width         : 100%;
     margin-bottom : 5px;
-    height        : 40px;
-    line-height   : 40px;
-    font-size     : 16px;
+    height        : 30px;
+    line-height   : 30px;
+    font-size     : 15px;
     cursor        : pointer;
   }
 
@@ -69,6 +71,21 @@
     font-size     : 16px;
     text-overflow : ellipsis;
     overflow      : hidden;
+  }
+
+  .piece {
+    display       : inline-block;
+    width         : 18%;
+    min-width     : 50px;
+    padding       : 0 5px;
+    box-sizing    : border-box;
+    white-space   : nowrap;
+    overflow      : hidden;
+    text-overflow : ellipsis;
+
+    &:first-child {
+      width : 50px;
+    }
   }
 }
 
