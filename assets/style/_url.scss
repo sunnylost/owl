@@ -2,8 +2,9 @@
     URL Area
 */
 .url-area {
-  height : 40%;
-  margin : 10px;
+  position : relative;
+  height   : 40%;
+  margin   : 10px;
 
   .filter {
     height        : 20px;
@@ -33,8 +34,8 @@
   }
 
   .list {
-    height   : calc(100% - 30px);
-    padding  : 5px 5px 0;
+    height   : calc(100% - 60px);
+    padding  : 35px 5px 0;
     overflow : scroll;
     border   : 1px solid;
   }
@@ -49,6 +50,15 @@
     line-height   : 30px;
     font-size     : 15px;
     cursor        : pointer;
+  }
+
+  &.col-header {
+    position         : absolute;
+    width            : 99%;
+    left             : 1px;
+    top              : 24px;
+    z-index          : 100;
+    background-color : aliceblue;
   }
 
   &.item:nth-child( odd ) {
