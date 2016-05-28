@@ -34,14 +34,11 @@ let parseType       = headers => {
     }
 
 class URL {
-    constructor( { req, res, body } ) {
-        let reqHeaders = req.headers,
-            resHeaders = res.headers,
-            url        = req.url,
-            host       = req.headers.host,
-            domain     = host.split( ':' )[ 0 ],
-            protocol   = urlLib.parse( url ).protocol,
-            path       = req.url.replace( protocol + '//', '' ).replace( host, '' )
+    constructor( { url, method, status, reqHeaders, resHeaders, body } ) {
+        let host     = reqHeaders.host,
+            domain   = host.split( ':' )[ 0 ],
+            protocol = urlLib.parse( url ).protocol,
+            path     = url.replace( protocol + '//', '' ).replace( host, '' )
 
         return {
             id        : Util.generateID(),
@@ -52,13 +49,13 @@ class URL {
             host,
             type      : parseType( resHeaders ),
             general   : {
-                url   : req.url,
-                method: req.method,
-                status: res.statusCode
+                url,
+                method,
+                status
             },
             reqHeaders: parseObjToArray( reqHeaders ),
             resHeaders: parseObjToArray( resHeaders ),
-            query     : parseQuery( req.url ),
+            query     : parseQuery( url ),
             body
         }
     }

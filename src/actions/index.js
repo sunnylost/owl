@@ -64,7 +64,7 @@ export const search = ( keyword ) => {
 
 export const addURL = ( data ) => {
     let url = new URL( data )
-
+    
     global.Store.dispatch( {
         type: actionTypes.URL_ADD,
         url

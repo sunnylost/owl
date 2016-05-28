@@ -1,17 +1,29 @@
 import Http from 'http'
 import Zlib from 'zlib'
 import { Transform } from 'stream'
-import { addURL } from '../actions'
 
 const zipMethodMap = {
     'gzip'   : 'unzip',
     'deflate': 'Inflate'
 }
 
-let server
+let env = process.env,
+    server
 
-export default {
-    start( config ) {
+//TODO
+process.on( 'message', ( msg ) => {
+    console.log( msg )
+    if ( msg === 'KILL' ) {
+        Proxy.stop()
+    }
+} )
+
+const send = ( data ) => {
+    process.send( data )
+}
+
+const Proxy = {
+    start() {
         server = Http.createServer( ( req, res ) => {
             var headers = req.headers,
                 method  = req.method || 'GET',
@@ -28,8 +40,6 @@ export default {
 
             //TODO
             var proxyReq = Http.request( option, proxyRes => {
-                res.writeHead( proxyRes.statusCode, proxyRes.headers )
-
                 let chunks    = [],
                     zipMethod = proxyRes.headers[ 'content-encoding' ],
                     parser    = new Transform( {
@@ -41,12 +51,18 @@ export default {
 
                         flush( done ) {
                             let finish = ( err, buffer ) => {
-                                    addURL( {
-                                        req,
-                                        res : proxyRes,
-                                        body: buffer ? buffer.toString() : ''
+                                    send( {
+                                        type: 'add',
+                                        data: {
+                                            url       : req.url,
+                                            method    : req.method,
+                                            status    : proxyRes.statusCode,
+                                            reqHeaders: req.headers,
+                                            resHeaders: proxyRes.headers,
+                                            body      : buffer ? buffer.toString() : ''
+                                        }
                                     } )
-                                    this.push( null )
+
                                     done()
                                 },
                                 buffer = Buffer.concat( chunks )
@@ -59,14 +75,18 @@ export default {
                         }
                     } )
 
+                delete proxyRes.headers[ 'content-length' ]
+                res.writeHead( proxyRes.statusCode, proxyRes.headers )
                 proxyRes.pipe( parser ).pipe( res )
             } )
 
             req.pipe( proxyReq )
-        } ).listen( config.port )
+        } ).listen( env.port )
     },
 
     stop() {
         server.close()
     }
 }
+
+Proxy.start()
