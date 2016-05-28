@@ -2,13 +2,12 @@ import OS from 'os'
 import Cluster from 'cluster'
 import { addURL } from '../actions'
 
-let workers = []
-
 const send = ( msg, callback ) => {
-          workers.forEach( worker => {
+          for ( let id in Cluster.workers ) {
+              let worker = Cluster.workers[ id ]
               worker.send( msg )
               callback && callback( worker )
-          } )
+          }
       },
 
       end  = () => {
@@ -27,14 +26,12 @@ const Server = {
         OS.cpus().forEach( () => {
             let worker = Cluster.fork( config )
             worker.on( 'message', msg => {
-                console.log( 'MSg from worker = ', msg )
                 switch ( msg.type ) {
                     case 'add':
                         addURL( msg.data )
                         break
                 }
             } )
-            workers.push( worker )
         } )
     },
 
