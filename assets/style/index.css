@@ -370,6 +370,28 @@ button {
 .preview .array:after {
   content: ']'; }
 
+.folder-wrap .fa {
+  display: none;
+  cursor: pointer; }
+
+.fold, .unfold {
+  position: relative; }
+  .fold > .fa, .unfold > .fa {
+    display: block;
+    position: absolute;
+    top: 1px;
+    left: -.6em;
+    font-size: 14px; }
+
+.unfold > .fa {
+  left: -.8em; }
+
+.fold > span > .folder-wrap {
+  display: none; }
+
+.unfold > span > .folder-wrap {
+  display: block; }
+
 /*
   Console
 */

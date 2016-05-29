@@ -1,14 +1,40 @@
 import React from 'react'
 import Console from '../containers/console'
 
-let baseID   = 0
-const ACTIVE = 'active',
-    randomID = () => baseID++
+let baseID      = 0
+const ACTIVE    = 'active',
+    FOLD        = 'fold',
+    UNFOLD      = 'unfold',
+    FOLDER      = 'js-folder',
+    CARET_RIGHT = 'fa-caret-right',
+    CARET_DOWN  = 'fa-caret-down',
+    randomID    = () => baseID++
 
 class DetailTable extends React.Component {
     constructor() {
         super()
-        this.changeTab = this.changeTab.bind( this )
+        this.changeTab    = this.changeTab.bind( this )
+        this.toggleFolder = this.toggleFolder.bind( this )
+    }
+
+    toggleFolder( e ) {
+        let target    = e.target,
+            el        = target.parentNode,
+            classList = el.classList
+
+        if ( classList.contains( FOLDER ) ) {
+            if ( classList.contains( FOLD ) ) {
+                classList.remove( FOLD )
+                classList.add( UNFOLD )
+                target.classList.remove( CARET_RIGHT )
+                target.classList.add( CARET_DOWN )
+            } else {
+                classList.remove( UNFOLD )
+                classList.add( FOLD )
+                target.classList.remove( CARET_DOWN )
+                target.classList.add( CARET_RIGHT )
+            }
+        }
     }
 
     //TODO
@@ -20,17 +46,26 @@ class DetailTable extends React.Component {
                 result,
                 generate = obj => {
                     let result = Object.keys( obj ).map( key => {
-                        let value     = obj[ key ],
-                            type      = typeof value,
-                            realType  = Array.isArray( value ) ? 'array' : type,
-                            className = `value ${ realType }`
+                        let value       = obj[ key ],
+                            type        = typeof value,
+                            realType    = Array.isArray( value ) ? 'array' : type,
+                            className   = `value ${ realType }`,
+                            hasChildren = realType === 'object' || realType === 'array',
+                            icon
 
-                        return <li key={ randomID() }><b className="key">{ key }:</b> <span
-                            className={ className }>{ type === 'object' ? generate( value ) : String( value ) }</span>
+                        if ( hasChildren ) {
+                            icon = <i className="fa fa-caret-right" onClick={ e => this.toggleFolder( e ) }></i>
+                        }
+
+                        return <li key={ randomID() } className={ hasChildren ? 'fold js-folder' : '' }>
+                            { icon }
+                            <b className="key">{ key }: </b>
+                            <span
+                                className={ className }>{ hasChildren ? generate( value ) : String( value ) }</span>
                         </li>
                     } )
 
-                    return result.length ? <ul>{ result }</ul> : result
+                    return result ? <ul className="folder-wrap">{ result }</ul> : result
                 }
 
             result = generate( obj )
@@ -55,7 +90,7 @@ class DetailTable extends React.Component {
         }
 
         target.classList.add( ACTIVE )
-        cur.classList.add( ACTIVE )
+        cur && cur.classList.add( ACTIVE )
     }
 
     render() {
