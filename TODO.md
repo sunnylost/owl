@@ -1,11 +1,14 @@
 # TODO
 
-- basic
-    - display request and response info.
-    - filter
+- [ ] basic
+    - [x] display request and response info.
+    - [ ] url filter
+    - [ ] domain filter
+    - [ ] preview
+    - [ ] HTTPS
 
-- console panel
+- [ ] console panel
 
-- communicate with the page.
+- [ ] communicate with the page.
 
-- url mapping
+- [ ] url mapping
