@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { startServer, stopServer, changePort, clearScreen } from '../actions'
+import { startServer, stopServer, changePort, clearScreen, filterURL } from '../actions'
 import Infobar from '../components/infobar'
 import Operationbar from '../components/operationbar'
 
@@ -29,6 +29,12 @@ const mapDispatchToProps = ( dispatch ) => {
 
         clear() {
             dispatch( clearScreen() )
+        },
+
+        search( search ) {
+            dispatch( filterURL( {
+                search
+            } ) )
         }
     }
 }

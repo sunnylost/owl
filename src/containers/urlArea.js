@@ -26,7 +26,9 @@ const mapDispatchToProps = ( dispatch ) => {
         },
 
         filterURL( type ) {
-            dispatch( filterURL( type ) )
+            dispatch( filterURL( {
+                type
+            } ) )
         }
     }
 }

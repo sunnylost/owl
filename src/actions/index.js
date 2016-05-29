@@ -55,16 +55,9 @@ export const reset = () => {
     }
 }
 
-export const search = ( keyword ) => {
-    return {
-        type: actionTypes.SEARCH,
-        keyword
-    }
-}
-
 export const addURL = ( data ) => {
     let url = new URL( data )
-    
+
     global.Store.dispatch( {
         type: actionTypes.URL_ADD,
         url
@@ -80,10 +73,10 @@ export const displayDetailURL = ( id ) => {
     }
 }
 
-export const filterURL = ( filterType ) => {
+export const filterURL = ( filter ) => {
     return {
         type: actionTypes.URL_FILTER,
-        filterType
+        filter
     }
 }
 

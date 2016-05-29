@@ -3,7 +3,10 @@ import Const from '../util/const'
 
 const filterTypes  = Const.filter.map( item => item.value ),
       initialState = {
-          filter: filterTypes[ 0 ],
+          filter: {
+              type  : filterTypes[ 0 ],
+              search: ''
+          },
           filterTypes
       },
 
@@ -26,15 +29,22 @@ const urls = ( state = initialState, action ) => {
 
     switch ( action.type ) {
         case actionTypes.URL_ADD:
-            let { type } = action.url,
-                newState = [ ...state[ type ], action.url ]
+            var { type } = action.url,
+                newState = [ ...state[ type ], action.url ],
+                filter   = state.filter,
+                list
 
             all.push( action.url )
+            list = [ ...state[ state.filter.type ] ]
+
+            if ( filter.search ) {
+                list = list.filter( url => url.url.indexOf( filter.search ) != -1 )
+            }
 
             return Object.assign( {}, state, {
                 all     : [ ...all ],
                 [ type ]: newState,
-                current : [ ...state[ state.filter ] ]
+                current : list
             } )
 
         case actionTypes.SCREEN_CLEAR:
@@ -60,9 +70,19 @@ const urls = ( state = initialState, action ) => {
             } )
 
         case actionTypes.URL_FILTER:
+            var { type = state.filter.type, search = state.filter.search } = action.filter,
+                list = [ ...state[ type ] ]
+
+            if ( search ) {
+                list = list.filter( url => url.url.indexOf( search ) != -1 )
+            }
+
             return Object.assign( {}, state, {
-                current: [ ...state[ action.filterType ] ],
-                filter : action.filterType
+                current: list,
+                filter : {
+                    type,
+                    search
+                }
             } )
 
         case actionTypes.URL_HIDE_DETAIL:

@@ -1,5 +1,4 @@
 import React from 'react'
-import Searchbar from './searchbar'
 
 const Operationbar = ( { isRunning, statusText, toggleServer, clear } ) => (
     <div className="operate">
@@ -15,7 +14,6 @@ const Operationbar = ( { isRunning, statusText, toggleServer, clear } ) => (
         </button>
         <button onClick={ clear }>清屏</button>
         <button>重置</button>
-        <Searchbar placeholder="查找"/>
         <span className="status">{ statusText }</span>
     </div>
 )

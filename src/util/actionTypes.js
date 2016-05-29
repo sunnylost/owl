@@ -5,7 +5,6 @@ var actions = {};
     'SERVER_STOP',
     'SCREEN_CLEAR',
     'RESET',
-    'SEARCH',
     'URL_ADD',
     'URL_FILTER',
     'URL_FILTER_CLEAR',

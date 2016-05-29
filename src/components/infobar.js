@@ -1,7 +1,7 @@
 import React from 'react'
 import Searchbar from './searchbar'
 
-const Infobar = ( { ip, port, isRunning, changePort } ) => (
+const Infobar = ( { ip, port, isRunning, changePort, search } ) => (
     <div className="info">
         <label htmlFor="ip">IP:
             <span id="ip">{ ip }</span>
@@ -12,8 +12,7 @@ const Infobar = ( { ip, port, isRunning, changePort } ) => (
         </label>
         <label htmlFor="url-filter">
             Url Filter:
-            <Searchbar />
-            <button className="danger" title="清空 Url Filter">清空</button>
+            <Searchbar search={ search }/>
         </label>
     </div>
 )
