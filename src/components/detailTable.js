@@ -34,7 +34,7 @@ class DetailTable extends React.Component {
             bodyElement
 
         if ( query ) {
-            queryElement = ( <section>
+            queryElement = ( <section className="headers">
                 <h4>Query String Parameters</h4>
                 <ul>
                     { query.map( ( [ key, value ] ) => {

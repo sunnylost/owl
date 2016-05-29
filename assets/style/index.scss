@@ -1,10 +1,12 @@
 $color : #3e454d;
 $grayColor : #ccc;
 
+@import "reset";
 @import "base";
 @import "icon";
 @import "header";
 @import "button";
-@import "console";
 @import "url";
+@import "detail";
+@import "console";
 

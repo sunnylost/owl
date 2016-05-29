@@ -1,3 +1,16 @@
+body {
+  font-size   : 12px;
+  font-family : Arial;
+  color       : #3e454d;
+  overflow    : auto;
+}
+
 html, body, #app, #app > div {
   height : 100%;
+}
+
+h4 {
+  font-size   : 14px;
+  font-weight : 600;
+  margin      : .3em 0;
 }
