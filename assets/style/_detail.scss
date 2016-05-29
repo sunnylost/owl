@@ -77,6 +77,14 @@
   &.active {
     display : block;
   }
+
+  &.active.preview {
+    display : flex;
+  }
+
+  img.preview {
+    margin : auto;
+  }
 }
 
 .blank {
@@ -96,4 +104,50 @@
 
 .show {
   display : block;
+}
+
+.preview {
+  ul {
+    margin-left : 1em;
+  }
+
+  b {
+    font-weight : normal;
+  }
+
+  .key {
+    color : #812a9b;
+  }
+
+  .number, .boolean {
+    color : #1000ce;
+  }
+
+  .string {
+    color : #aa1d07;
+
+    &:before, &:after {
+      content : '"';
+    }
+  }
+
+  .object {
+    &:before {
+      content : "{"
+    }
+
+    &:after {
+      content : '}';
+    }
+  }
+
+  .array {
+    &:before {
+      content : "["
+    }
+
+    &:after {
+      content : ']';
+    }
+  }
 }

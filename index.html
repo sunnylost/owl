@@ -4,20 +4,9 @@
     <meta charset="utf-8">
     <title>OWL</title>
     <link rel="stylesheet" href="assets/style/index.css">
-    <link rel="stylesheet" href="css/main.css">
-    <script>
-        //http://electron.atom.io/docs/v0.37.6/faq/electron-faq/#i-can-not-use-jqueryrequirejsmeteorangularjs-in-electron
-        window.nodeRequire = require;
-        delete window.require;
-        delete window.exports;
-        delete window.module;
-    </script>
 </head>
 <body>
 <div id="app"></div>
 </body>
-<script>
-    window.require = nodeRequire
-</script>
-<script src="./build/index.js"></script>
+<script src="./dev/index.js"></script>
 </html>

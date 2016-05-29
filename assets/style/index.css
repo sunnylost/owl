@@ -319,6 +319,10 @@ button {
   overflow: scroll; }
   .tab-content-item.active {
     display: block; }
+  .tab-content-item.active.preview {
+    display: flex; }
+  .tab-content-item img.preview {
+    margin: auto; }
 
 .blank {
   position: absolute;
@@ -336,6 +340,35 @@ button {
 
 .show {
   display: block; }
+
+.preview ul {
+  margin-left: 1em; }
+
+.preview b {
+  font-weight: normal; }
+
+.preview .key {
+  color: #812a9b; }
+
+.preview .number, .preview .boolean {
+  color: #1000ce; }
+
+.preview .string {
+  color: #aa1d07; }
+  .preview .string:before, .preview .string:after {
+    content: '"'; }
+
+.preview .object:before {
+  content: "{"; }
+
+.preview .object:after {
+  content: '}'; }
+
+.preview .array:before {
+  content: "["; }
+
+.preview .array:after {
+  content: ']'; }
 
 /*
   Console

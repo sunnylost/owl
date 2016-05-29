@@ -1,13 +1,44 @@
 import React from 'react'
 import Console from '../containers/console'
 
-const ACTIVE     = 'active',
-      bodyFilter = [ 'image' ]
+let baseID   = 0
+const ACTIVE = 'active',
+    randomID = () => baseID++
 
 class DetailTable extends React.Component {
     constructor() {
         super()
         this.changeTab = this.changeTab.bind( this )
+    }
+
+    //TODO
+    generatePreview( { type, url, body } ) {
+        if ( type === 'img' ) {
+            return <img className="preview" src={ url }/>
+        } else if ( type === 'json' ) {
+            let obj      = JSON.parse( body ),
+                result,
+                generate = obj => {
+                    let result = Object.keys( obj ).map( key => {
+                        let value     = obj[ key ],
+                            type      = typeof value,
+                            realType  = Array.isArray( value ) ? 'array' : type,
+                            className = `value ${ realType }`
+
+                        return <li key={ randomID() }><b className="key">{ key }:</b> <span
+                            className={ className }>{ type === 'object' ? generate( value ) : String( value ) }</span>
+                        </li>
+                    } )
+
+                    return result.length ? <ul>{ result }</ul> : result
+                }
+
+            result = generate( obj )
+
+            return result
+        } else {
+            return body
+        }
     }
 
     changeTab( e ) {
@@ -28,10 +59,9 @@ class DetailTable extends React.Component {
     }
 
     render() {
-        console.log( this.props )
         let { general, reqHeaders, resHeaders, url, query, body, type } = this.props,
             queryElement = '',
-            bodyElement
+            bodyElement, previewElement
 
         if ( query ) {
             queryElement = ( <section className="headers">
@@ -45,7 +75,8 @@ class DetailTable extends React.Component {
         }
 
         if ( body.length ) {
-            bodyElement = body
+            previewElement = this.generatePreview( { type, url, body } )
+            bodyElement    = body
         } else {
             bodyElement = <p className="blank">This Request has no response data available.</p>
         }
@@ -85,8 +116,8 @@ class DetailTable extends React.Component {
                     </section>
                     { queryElement }
                 </div>
-                <div className="tab-content-item" ref="content-1">
-
+                <div className="tab-content-item preview" ref="content-1">
+                    { previewElement }
                 </div>
                 <div className="tab-content-item" ref="content-2">
                     { bodyElement }
