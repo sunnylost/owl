@@ -359,7 +359,7 @@ button {
     content: '"'; }
 
 .preview .object:before {
-  content: "{"; }
+  content: '{'; }
 
 .preview .object:after {
   content: '}'; }
@@ -369,6 +369,12 @@ button {
 
 .preview .array:after {
   content: ']'; }
+
+.preview .fold .object:before {
+  content: '{...'; }
+
+.preview .fold .array:before {
+  content: '[...'; }
 
 .folder-wrap .fa {
   display: none;

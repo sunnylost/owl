@@ -133,7 +133,7 @@
 
   .object {
     &:before {
-      content : "{"
+      content : '{';
     }
 
     &:after {
@@ -148,6 +148,16 @@
 
     &:after {
       content : ']';
+    }
+  }
+
+  .fold {
+    .object:before {
+      content : '{...';
+    }
+
+    .array:before {
+      content : '[...';
     }
   }
 }
