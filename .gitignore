@@ -38,3 +38,6 @@ jspm_packages
 .DS_Store
 /build
 /.sass-cache
+/dev
+dist/
+/app

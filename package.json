@@ -3,24 +3,22 @@
   "main": "index.js",
   "version": "0.0.1-alpha",
   "author": "sunnylost",
-  "window": {
-    "toolbar": false,
-    "resizable": true,
-    "fullscreen": false,
-    "icon": "assets/imgs/app.png",
-    "width": 800,
-    "height": 600
-  },
   "build": {
-    "app-bundle-id": "your.id",
-    "app-category-type": "your.app.category.type"
+    "app-bundle-id": "owl",
+    "app-category-type": "public.app-category.developer-tools"
   },
   "scripts": {
-    "build": "babel src -w -d build",
+    "build": "babel src -w -d dev",
     "build-css": "node-sass assets/style/index.scss assets/style/index.css",
-    "css": "nodemon -e scss -x \"npm run build-css\""
+    "css": "nodemon -e scss -x \"npm run build-css\"",
+    "postinstall": "install-app-deps",
+    "pack": "build",
+    "dist": "build"
   },
   "dependencies": {
+    "cssbeautify": "^0.3.1",
+    "highlight.js": "^9.4.0",
+    "js-beautify": "^1.6.2",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-redux": "^4.4.5",
@@ -40,6 +38,9 @@
     "babel-plugin-transform-object-assign": "^6.8.0",
     "babel-plugin-transform-react-display-name": "^6.8.0",
     "babel-plugin-transform-react-jsx": "^6.8.0",
+    "electron-builder": "^3.25.0",
+    "electron-prebuilt": "^1.2.0",
+    "envify": "^3.4.0",
     "node-sass": "^3.7.0",
     "nodemon": "^1.9.2"
   }

@@ -3,8 +3,8 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import { createStore, applyMiddleware } from 'redux'
-import reducers from './build/reducers'
-import App from './build/app'
+import reducers from './dev/reducers'
+import App from './dev/app'
 
 const store  = createStore( reducers, applyMiddleware( thunk ) )
 global.Store = store
