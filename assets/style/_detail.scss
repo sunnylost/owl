@@ -42,6 +42,10 @@
   }
 
   .headers {
+    h4 {
+      display : inline-block;
+    }
+
     ul {
       margin : 2px 0 2px 1em;
     }
@@ -104,6 +108,16 @@
 
 .show {
   display : block;
+}
+
+.encode-link {
+  margin-left     : 2em;
+  color           : #b1b1b1;
+  text-decoration : none;
+
+  &:hover {
+    color : #353472;
+  }
 }
 
 .code {

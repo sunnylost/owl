@@ -297,6 +297,8 @@ button {
   overflow: scroll; }
   .tab-content section:not(:last-child) {
     border-bottom: 1px solid #ccc; }
+  .tab-content .headers h4 {
+    display: inline-block; }
   .tab-content .headers ul {
     margin: 2px 0 2px 1em; }
   .tab-content .headers li {
@@ -340,6 +342,13 @@ button {
 
 .show {
   display: block; }
+
+.encode-link {
+  margin-left: 2em;
+  color: #b1b1b1;
+  text-decoration: none; }
+  .encode-link:hover {
+    color: #353472; }
 
 .code {
   width: 100%; }

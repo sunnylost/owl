@@ -26,6 +26,8 @@ const ACTIVE        = 'active',
       FOLDER        = 'js-folder',
       CARET_RIGHT   = 'fa-caret-right',
       CARET_DOWN    = 'fa-caret-down',
+      ENCODE_TEXT   = 'view URL encoded',
+      DECODE_TEXT   = 'view decoded',
       PREVIEW_INDEX = 1,
       randomID      = () => baseID++
 
@@ -33,13 +35,16 @@ class DetailTable extends React.Component {
     constructor( props ) {
         super( props )
 
-        this.state        = {
-            curIndex       : 0,
-            needPrettyPrint: false, // 切换到 preview 面板时为 true
-            isPrettyPrinted: false  // pretty 结束后为 true
+        this.state             = {
+            curIndex        : 0,
+            isQueryEncode   : false,  //true 表示显示编码参数, false 表示参数已解码
+            encodeStatusText: ENCODE_TEXT,
+            needPrettyPrint : false, // 切换到 preview 面板时为 true
+            isPrettyPrinted : false  // pretty 结束后为 true
         }
-        this.changeTab    = this.changeTab.bind( this )
-        this.toggleFolder = this.toggleFolder.bind( this )
+        this.changeTab         = this.changeTab.bind( this )
+        this.toggleFolder      = this.toggleFolder.bind( this )
+        this.changeQueryEncode = this.changeQueryEncode.bind( this )
     }
 
     componentWillReceiveProps( nextProps ) {
@@ -76,6 +81,13 @@ class DetailTable extends React.Component {
                 target.classList.add( CARET_RIGHT )
             }
         }
+    }
+
+    changeQueryEncode() {
+        this.setState( {
+            isQueryEncode   : !this.state.isQueryEncode,
+            encodeStatusText: !this.state.isQueryEncode ? DECODE_TEXT : ENCODE_TEXT
+        } )
     }
 
     //TODO
@@ -153,6 +165,7 @@ class DetailTable extends React.Component {
                 'tab-content-item ',
                 'tab-content-item '
             ],
+            isQueryEncode     = this.state.isQueryEncode,
             bodyElement, previewElement,
 
             generateContent   = ( className, index ) => {
@@ -214,10 +227,11 @@ class DetailTable extends React.Component {
 
         if ( query ) {
             queryElement = ( <section className="headers">
-                <h4>Query String Parameters</h4>
+                <h4>Query String Parameters</h4><a className="encode-link" href="#" onClick={ this.changeQueryEncode }>{ this.state.encodeStatusText }</a>
                 <ul>
                     { query.map( ( [ key, value ] ) => {
-                        return <li key={ key }><b>{ key }:</b> { value }</li>
+                        return <li key={ key }><b>{ key }:</b> { isQueryEncode ? value : decodeURIComponent( value ) }
+                        </li>
                     } ) }
                 </ul>
             </section>)
