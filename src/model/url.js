@@ -3,25 +3,7 @@ import urlLib from 'url'
 import MIMEType from '../util/mimeType'
 
 //TODO
-let parseType       = headers => {
-        let type   = headers[ 'content-type' ],
-            accept = headers.accept
-
-        if ( type ) {
-            return MIMEType( type )
-        } else if ( accept ) {
-            //TODO
-            [ , type ] = accept.match( /^([^\/]+)\// )
-
-            if ( type === '*' ) {
-                type = 'other'
-            }
-        }
-
-        return type || 'other'
-    },
-
-    parseObjToArray = obj => {
+let parseObjToArray = obj => {
         return Object.keys( obj ).map( key => [ key, obj[ key ] ] )
     },
 
@@ -47,7 +29,7 @@ class URL {
             protocol,
             path,
             host,
-            type      : parseType( resHeaders ),
+            type      : MIMEType( resHeaders, body ),
             general   : {
                 url,
                 method,
