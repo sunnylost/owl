@@ -341,6 +341,12 @@ button {
 .show {
   display: block; }
 
+.code {
+  width: 100%; }
+
+.hljs {
+  background-color: #fff; }
+
 .preview ul {
   margin-left: 1em; }
 

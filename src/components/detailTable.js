@@ -1,20 +1,61 @@
 import React from 'react'
 import Console from '../containers/console'
 
-let baseID      = 0
-const ACTIVE    = 'active',
-    FOLD        = 'fold',
-    UNFOLD      = 'unfold',
-    FOLDER      = 'js-folder',
-    CARET_RIGHT = 'fa-caret-right',
-    CARET_DOWN  = 'fa-caret-down',
-    randomID    = () => baseID++
+let JSBeautify  = require( 'js-beautify' ).js_beautify,
+    CSSBeautify = require( 'cssbeautify' ),
+    baseID      = 0,
+    currentID   = 0,
+    beautify    = {
+        js( code ) {
+            return JSBeautify( code, {
+                indent_size: 2
+            } )
+        },
+
+        css( code ) {
+            return CSSBeautify( code, {
+                indent       : '  ',
+                autosemicolon: true
+            } )
+        }
+    }
+
+const ACTIVE        = 'active',
+      FOLD          = 'fold',
+      UNFOLD        = 'unfold',
+      FOLDER        = 'js-folder',
+      CARET_RIGHT   = 'fa-caret-right',
+      CARET_DOWN    = 'fa-caret-down',
+      PREVIEW_INDEX = 1,
+      randomID      = () => baseID++
 
 class DetailTable extends React.Component {
-    constructor() {
-        super()
+    constructor( props ) {
+        super( props )
+
+        this.state        = {
+            curIndex       : 0,
+            needPrettyPrint: false, // 切换到 preview 面板时为 true
+            isPrettyPrinted: false  // pretty 结束后为 true
+        }
         this.changeTab    = this.changeTab.bind( this )
         this.toggleFolder = this.toggleFolder.bind( this )
+    }
+
+    componentWillReceiveProps( nextProps ) {
+        if ( currentID != nextProps.id ) {
+            this.setState( {
+                needPrettyPrint: this.state.curIndex == PREVIEW_INDEX,
+                isPrettyPrinted: false
+            } )
+            currentID = nextProps.id
+        }
+    }
+
+    componentWillUpdate( nextProps, nextState ) {
+        if ( nextState.needPrettyPrint && !nextState.isPrettyPrinted ) {
+            setTimeout( () => this.prettyPrint(), 0 )
+        }
     }
 
     toggleFolder( e ) {
@@ -43,8 +84,8 @@ class DetailTable extends React.Component {
             return <img className="preview" src={ url }/>
         } else if ( type === 'json' ) {
             let obj      = JSON.parse( body ),
-                result,
-                generate = obj => {
+                //TODO
+                generate = ( obj ) => {
                     let result = Object.keys( obj ).map( key => {
                         let value       = obj[ key ],
                             type        = typeof value,
@@ -68,35 +109,108 @@ class DetailTable extends React.Component {
                     return result ? <ul className="folder-wrap">{ result }</ul> : result
                 }
 
-            result = generate( obj )
-
-            return result
+            return generate( obj )
         } else {
             return body
         }
     }
 
     changeTab( e ) {
-        let refs   = this.refs,
-            target = e.target,
-            cur    = this.refs[ `content-${target.dataset.index}` ]
+        let index = e.target.dataset.index
 
-        if ( target.classList.contains( ACTIVE ) ) {
-            return
+        this.setState( {
+            curIndex       : index,
+            needPrettyPrint: index == PREVIEW_INDEX
+        } )
+    }
+
+    prettyPrint() {
+        let el   = this.refs[ 'content-1' ],
+            type = el.dataset.type
+
+        if ( beautify[ type ] ) {
+            el.innerHTML = `<pre class="code"><code class="${ type }">${ beautify[ type ]( el.innerHTML ) }</code></pre>`
+            hljs.highlightBlock( el.querySelector( 'code' ) )
         }
 
-        for ( let key in this.refs ) {
-            refs[ key ].classList.remove( ACTIVE )
-        }
-
-        target.classList.add( ACTIVE )
-        cur && cur.classList.add( ACTIVE )
+        this.setState( {
+            isPrettyPrinted: true
+        } )
     }
 
     render() {
         let { general, reqHeaders, resHeaders, url, query, body, type } = this.props,
-            queryElement = '',
-            bodyElement, previewElement
+            queryElement      = '',
+            tabItems          = [
+                'headers',
+                'Preview',
+                'Response',
+                'Console'
+            ],
+            tabContentClasses = [
+                'tab-content-item ',
+                'tab-content-item preview ',
+                'tab-content-item ',
+                'tab-content-item '
+            ],
+            bodyElement, previewElement,
+
+            generateContent   = ( className, index ) => {
+                if ( index == this.state.curIndex ) {
+                    className += ACTIVE
+                }
+
+                switch ( index ) {
+                    case 0:
+                        return <div key={ index } className={ className } ref={ 'content-0' }>
+                            <section>
+                                <h4>General</h4>
+                                <ul>
+                                    <li><b>Request URL:</b> { url }</li>
+                                    <li><b>Request Method:</b> { general.method }</li>
+                                    <li><b>Status Code:</b> { general.status }</li>
+                                </ul>
+                            </section>
+                            < section
+                                className="headers">
+                                <h4>Response Headers</h4>
+                                <ul>
+                                    { resHeaders.map( ( [ key, value ] ) => {
+                                        return <li key={ key }><b>{ key }:</b> { value }</li>
+                                    } )
+                                    }
+                                </ul>
+                            </section>
+                            <section className="headers">
+                                <h4>Request Headers</h4>
+                                <ul>
+                                    { reqHeaders.map( ( [ key, value ] ) => {
+                                        return <li key={ key }><b>{ key }:</b> { value }</li>
+                                    } ) }
+                                </ul>
+                            </section>
+                            { queryElement }
+                        </div>
+
+                    case 1:
+                        return <div
+                            key={ index }
+                            className={ className }
+                            ref={ 'content-1' }
+                            data-type={ type }>
+                            { previewElement }
+                        </div>
+
+                    case 2:
+                        return <div key={ index } className={ className } ref="content-2">
+                            { bodyElement }
+                        </div>
+                    case 3:
+                        return <div key={ index } className={ className } ref="content-3">
+                            <Console />
+                        </div>
+                }
+            }
 
         if ( query ) {
             queryElement = ( <section className="headers">
@@ -118,48 +232,19 @@ class DetailTable extends React.Component {
 
         return <div className="detail-table">
             <ul className="tab" onClick={ this.changeTab }>
-                <li className="tab-item active" ref="tab-item-0" data-index="0">Headers</li>
-                <li className="tab-item" ref="tab-item-1" data-index="1">Preview</li>
-                <li className="tab-item" ref="tab-item-2" data-index="2">Response</li>
-                <li className="tab-item" ref="tab-item-3" data-index="3">Console</li>
+                { tabItems.map( ( item, index ) => {
+                    let className = `tab-item ${ index == this.state.curIndex ? ACTIVE : '' }`
+                    return <li key={ index }
+                               className={ className }
+                               ref={ `tab-item-${ index }` }
+                               data-index={ index }
+                    >{ item }</li>
+                } )}
             </ul>
             <div className="tab-content">
-                <div className="tab-content-item active" ref="content-0">
-                    <section>
-                        <h4>General</h4>
-                        <ul>
-                            <li><b>Request URL:</b> { url }</li>
-                            <li><b>Request Method:</b> { general.method }</li>
-                            <li><b>Status Code:</b> { general.status }</li>
-                        </ul>
-                    </section>
-                    <section className="headers">
-                        <h4>Response Headers</h4>
-                        <ul>
-                            { resHeaders.map( ( [ key, value ] ) => {
-                                return <li key={ key }><b>{ key }:</b> { value }</li>
-                            } ) }
-                        </ul>
-                    </section>
-                    <section className="headers">
-                        <h4>Request Headers</h4>
-                        <ul>
-                            { reqHeaders.map( ( [ key, value ] ) => {
-                                return <li key={ key }><b>{ key }:</b> { value }</li>
-                            } ) }
-                        </ul>
-                    </section>
-                    { queryElement }
-                </div>
-                <div className="tab-content-item preview" ref="content-1">
-                    { previewElement }
-                </div>
-                <div className="tab-content-item" ref="content-2">
-                    { bodyElement }
-                </div>
-                <div className="tab-content-item" ref="content-3">
-                    <Console />
-                </div>
+                {
+                    tabContentClasses.map( ( item, index ) => generateContent( item, index ) )
+                }
             </div>
         </div>
     }
