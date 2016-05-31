@@ -16,7 +16,7 @@ export default ( headers, body ) => {
     }
 
     if ( type.indexOf( 'json' ) != -1 ) {
-        if ( body.indexOf( '{' ) != -1 ) {
+        if ( body.indexOf( '{' ) == 0 ) {
             return 'json'
         } else {
             return 'js'
@@ -36,8 +36,8 @@ export default ( headers, body ) => {
     }
 
     if ( type.indexOf( 'text/plain' ) != -1 ) {
-        let type
-        if ( body.indexOf( '{' ) != -1 ) {
+        let type = 'other'
+        if ( body.indexOf( '{' ) == 0 ) {
             try {
                 JSON.parse( body )
                 type = 'json'
