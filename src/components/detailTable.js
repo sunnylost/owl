@@ -239,7 +239,7 @@ class DetailTable extends React.Component {
 
         if ( body.length ) {
             previewElement = this.generatePreview( { type, url, body } )
-            bodyElement    = body
+            bodyElement    = type == 'img' ? '' : body
         } else {
             bodyElement = <p className="blank">This Request has no response data available.</p>
         }
