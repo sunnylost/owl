@@ -1,11 +1,12 @@
 import actionTypes from '../util/actionTypes'
 import Const from '../util/const'
 
-const filterTypes  = Const.filter.map( item => item.value ),
+const NULL         = null,
+      filterTypes  = Const.filter.map( item => item.value ),
       initialState = {
           filter: {
               type  : filterTypes[ 0 ],
-              search: ''
+              search: NULL
           },
           filterTypes
       },
@@ -38,7 +39,7 @@ const urls = ( state = initialState, action ) => {
             list = [ ...state[ state.filter.type ] ]
 
             if ( filter.search ) {
-                list = list.filter( url => url.url.indexOf( filter.search ) != -1 )
+                list = list.filter( url => url.url.match( filter.search ) )
             }
 
             return Object.assign( {}, state, {
@@ -74,7 +75,8 @@ const urls = ( state = initialState, action ) => {
                 list = [ ...state[ type ] ]
 
             if ( search ) {
-                list = list.filter( url => url.url.indexOf( search ) != -1 )
+                search = new RegExp( search )
+                list   = list.filter( url => url.url.match( search ) )
             }
 
             return Object.assign( {}, state, {
