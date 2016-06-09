@@ -1,5 +1,5 @@
 import React from 'react'
-import Console from '../containers/console'
+import CookiePanel from './cookiePanel'
 
 let JSBeautify  = require( 'js-beautify' ).js_beautify,
     CSSBeautify = require( 'cssbeautify' ),
@@ -157,7 +157,7 @@ class DetailTable extends React.Component {
                 'headers',
                 'Preview',
                 'Response',
-                'Console'
+                'Cookie'
             ],
             tabContentClasses = [
                 'tab-content-item ',
@@ -218,16 +218,16 @@ class DetailTable extends React.Component {
                         return <div key={ index } className={ className } ref="content-2">
                             { bodyElement }
                         </div>
+
                     case 3:
-                        return <div key={ index } className={ className } ref="content-3">
-                            <Console />
-                        </div>
+                        return <CookiePanel req={ reqHeaders } res={ resHeaders }/>
                 }
             }
 
         if ( query ) {
             queryElement = ( <section className="headers">
-                <h4>Query String Parameters</h4><a className="encode-link" href="#" onClick={ this.changeQueryEncode }>{ this.state.encodeStatusText }</a>
+                <h4>Query String Parameters</h4><a className="encode-link" href="#"
+                                                   onClick={ this.changeQueryEncode }>{ this.state.encodeStatusText }</a>
                 <ul>
                     { query.map( ( [ key, value ] ) => {
                         return <li key={ key }><b>{ key }:</b> { isQueryEncode ? value : decodeURIComponent( value ) }
