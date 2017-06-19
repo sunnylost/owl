@@ -7,41 +7,55 @@
     "app-bundle-id": "owl",
     "app-category-type": "public.app-category.developer-tools"
   },
+  "engines": {
+    "node": ">=8.0.0"
+  },
   "scripts": {
     "build": "babel src -w -d dev",
     "build-css": "node-sass assets/style/index.scss assets/style/index.css",
     "css": "nodemon -e scss -x \"npm run build-css\"",
     "postinstall": "install-app-deps",
+    "precommit": "lint-staged",
     "pack": "build",
     "dist": "build"
   },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
+  },
   "dependencies": {
     "cssbeautify": "^0.3.1",
-    "highlight.js": "^9.4.0",
-    "js-beautify": "^1.6.2",
-    "react": "^15.0.1",
-    "react-dom": "^15.0.1",
-    "react-redux": "^4.4.5",
-    "redux": "^3.5.2",
-    "redux-thunk": "^2.1.0",
-    "ws": "^1.1.0"
+    "highlight.js": "^9.12.0",
+    "js-beautify": "^1.6.14",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-redux": "^4.4.8",
+    "redux": "^3.7.0",
+    "redux-thunk": "^2.2.0",
+    "ws": "^1.1.4"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/mls-fe/owl.git"
   },
   "devDependencies": {
-    "babel-cli": "^6.7.7",
-    "babel-plugin-syntax-jsx": "^6.8.0",
-    "babel-plugin-transform-async-to-module-method": "^6.7.0",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.8.0",
-    "babel-plugin-transform-object-assign": "^6.8.0",
-    "babel-plugin-transform-react-display-name": "^6.8.0",
-    "babel-plugin-transform-react-jsx": "^6.8.0",
-    "electron-builder": "^3.25.0",
-    "electron-prebuilt": "^1.2.0",
-    "envify": "^3.4.0",
-    "node-sass": "^3.7.0",
-    "nodemon": "^1.9.2"
+    "babel-cli": "^6.24.1",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-async-to-module-method": "^6.24.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
+    "babel-plugin-transform-object-assign": "^6.22.0",
+    "babel-plugin-transform-react-display-name": "^6.25.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "electron": "^1.6.11",
+    "envify": "^3.4.1",
+    "eslint": "^4.0.0",
+    "eslint-plugin-react": "^7.1.0",
+    "husky": "^0.13.4",
+    "lint-staged": "^4.0.0",
+    "node-sass": "^3.13.1",
+    "nodemon": "^1.11.0",
+    "prettier-eslint": "^6.3.0"
   }
 }
