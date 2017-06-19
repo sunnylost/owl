@@ -60,9 +60,9 @@ import DetailArea from './containers/detailArea'
 class App extends React.Component {
     render() {
         return <div class="app-wrap">
-            <Toolbar/>
-            <URLArea/>
-            <DetailArea/>
+            <Toolbar />
+            <URLArea />
+            <DetailArea />
         </div>
     }
 }
