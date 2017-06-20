@@ -1,16 +1,13 @@
 {
-  "plugins": [
+  "presets": [
+    "react",
     [
-      "transform-async-to-module-method",
+      "env",
       {
-        "module": "bluebird",
-        "method": "coroutine"
+        "targets": {
+          "node": "current"
+        }
       }
-    ],
-    "transform-object-assign",
-    "transform-es2015-modules-commonjs",
-    "transform-react-display-name",
-    "transform-react-jsx",
-    "syntax-jsx"
+    ]
   ]
 }
