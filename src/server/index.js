@@ -7,18 +7,18 @@ let unsubscribe,
     wss
 
 const send = ( msg, callback ) => {
-          for ( let id in Cluster.workers ) {
-              let worker = Cluster.workers[ id ]
-              worker.send( msg )
-              callback && callback( worker )
-          }
-      },
+        for ( let id in Cluster.workers ) {
+            let worker = Cluster.workers[ id ]
+            worker.send( msg )
+            callback && callback( worker )
+        }
+    },
 
-      end  = () => {
-          send( 'KILL', ( worker ) => {
-              worker.disconnect()
-          } )
-      }
+    end  = () => {
+        send( 'KILL', ( worker ) => {
+            worker.disconnect()
+        } )
+    }
 
 const Server = {
     start( config ) {
@@ -56,9 +56,9 @@ const Server = {
             let worker = Cluster.fork( config )
             worker.on( 'message', msg => {
                 switch ( msg.type ) {
-                    case 'add':
-                        addURL( msg.data )
-                        break
+                case 'add':
+                    addURL( msg.data )
+                    break
                 }
             } )
         } )
